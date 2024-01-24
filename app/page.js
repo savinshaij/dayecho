@@ -4,17 +4,16 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import Menu from "@/components/menu/Menu ";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import Footer from "@/components/footer/Footer";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  if (session) {
-    redirect("/home")
-  }
+
 
 
   return (
-    <main className="   border border-[#1d1d1d08] bg-bgp">
-      <div className='flex justify-center items-center  text-center h-screen w-full  overflow-hidden '>
+    <main className="h-screen   border border-[#1d1d1d08] bg-bgp">
+      <div className='flex justify-center items-center  text-center  h-[97%] w-full  overflow-hidden '>
         <div className=" w-[70%] ">
           <h1 className="  text-4xl md:text-7xl font-bold  text-primary md:my-6 my-4  "> Welcome to DayEcho!</h1>
           <h2 className=" text-base md:text-2xl font-semibold  text-textc  "> Connect, Share, and Chronicle Your Daily Moments.</h2>
@@ -34,8 +33,9 @@ export default async function Home() {
           </div>
 
         </div>
-
+       
       </div>
+      <Footer/>
     </main>
   );
 }

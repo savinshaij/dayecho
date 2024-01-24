@@ -40,7 +40,7 @@ const Profile = () => {
                         </div>
 
                         <div className='      w-full  my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
-                            <div className=" w-full h-full flex items-center justify-center    bg-[#2a3036] rounded-3xl ">
+                            <div className=" w-full h-full flex items-center justify-center    bg-[#323a43] rounded-3xl ">
                                
                             </div>
                         </div>

@@ -41,7 +41,7 @@ export default function BottomMenu() {
               <HiUserGroup className=' w-7 h-7 ' />
               <p className=' text-xs text-gray-500'>Community</p>
           </Link>
-          <a className="flex items-center justify-center">
+          <Link href='/create' className="flex items-center justify-center">
               <div className="flex items-center justify-center">
                   <a
 
@@ -65,7 +65,7 @@ export default function BottomMenu() {
 
                   </a>
               </div>
-          </a>
+          </Link>
 
 
           <Link href="/diary" className={path === '/diary' ? 'active' : ''}>

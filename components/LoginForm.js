@@ -28,9 +28,12 @@ export default function LoginForm() {
         setError("Invalid Credentials");
         return;
       }
+      else{
+        router.replace("/home");
+      }
 
-      router.replace("/");
-
+     
+    
     } catch (error) {
       console.log(error);
     }

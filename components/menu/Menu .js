@@ -44,13 +44,13 @@ export default function Menu() {
                            <FaBook />
                             <span className="mx-4 font-medium"> My Diary</span>
                         </Link>
-                        <a
-                            className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:text-gray-700"
-                            href="#"
+                        <Link
+                            className={path === '/create' ? 'active' : ''}
+                            href="/create"
                         >
                           <IoSend />
                             <span className="mx-4 font-medium">Create post</span>
-                        </a>
+                        </Link>
                         <Link
                            className={path === '/friends' ? 'active' : ''}
                             href="/friends"
@@ -59,13 +59,13 @@ export default function Menu() {
                             <span className="mx-4 font-medium">Frends</span>
                         </Link>
                        
-                        <a
-                            className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md hover:bg-gray-100  hover:text-gray-700"
-                            href="#"
+                        <Link
+                            className={path === '/help' ? 'active' : ''}
+                            href="/help"
                         >
                            <FaRegQuestionCircle />
                             <span className="mx-4 font-medium">Help</span>
-                        </a>
+                        </Link>
                         <Link
                             className={path === '/profile' ? 'active' : ''}
                             href="/profile"
