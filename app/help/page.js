@@ -47,19 +47,19 @@ const Help = () => {
   <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
   How do I create an account?
   <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
-  To create an account, click on Sign Up and follow the simple registration process. You can sign up using your email or link your account with social media for a seamless experience.
+  To create an account, click on &ldquo;Sign Up&ldquo; and follow the simple registration process. You can sign up using your email or link your account with social media for a seamless experience.
   </li>
   </li>
   <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
   How can I post to the community?
   <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
-  Posting to the community is easy! Once you&apos;re logged in, click on the "Post" button, add your content, and share it with the DayEcho community.
+  Posting to the community is easy! Once you&apos;re logged in, click on the &ldquo;Post&ldquo; button, add your content, and share it with the DayEcho community.
   </li>
   </li>
   <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
   Where can I find my personal diary?
   <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
-  Your personal diary is accessible from your profile. Click on your profile picture, and you will find the "Diary" section where you can write and manage your daily entries.
+  Your personal diary is accessible from your profile. Click on your profile picture, and you will find the &ldquo;Diary&ldquo; section where you can write and manage your daily entries.
   </li>
   </li>
  </ul>
