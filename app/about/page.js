@@ -36,7 +36,7 @@ const About = () => {
               <div className=' w-full h-full pt-20 md:pt-0  '>
                 <h1 className=' text-4xl font-bold text-primary my-4'>About DayEcho</h1>
 
-                <p className='md:text-lg text-sm md:font-normal font-light text-textc' >Welcome to DayEcho, the digital canvas for your daily narratives. At DayEcho, we believe that every day is a unique story waiting to be shared and cherished. Our platform is more than just a space; it's a community-driven hub where your voice finds its resonance.</p>
+                <p className='md:text-lg text-sm md:font-normal font-light text-textc' >Welcome to DayEcho, the digital canvas for your daily narratives. At DayEcho, we believe that every day is a unique story waiting to be shared and cherished. Our platform is more than just a space; it&apos;s a community-driven hub where your voice finds its resonance.</p>
 
 
                 <h1 className=' text-3xl font-semibold text-primary my-4'>Our Mission</h1>
@@ -50,7 +50,7 @@ const About = () => {
 
                   <div className=' my-5'><span className=' text-xl font-bold text-white'> Personal Diaries:</span> Create your own digital diary, a sanctuary for your thoughts, reflections, and personal growth. Document your journey, celebrate your victories, and find solace in the act of self-expression.<br /></div>
 
-                  <div className=' my-5'> <span className=' text-xl font-bold text-white'>Meaningful Connections:</span>  Connect with like-minded individuals, form friendships, and build a network that appreciates the uniqueness of your story. DayEcho is not just a platform; it's a social space designed for genuine interactions.<br /></div>
+                  <div className=' my-5'> <span className=' text-xl font-bold text-white'>Meaningful Connections:</span>  Connect with like-minded individuals, form friendships, and build a network that appreciates the uniqueness of your story. DayEcho is not just a platform; it&apos;s a social space designed for genuine interactions.<br /></div>
                 </p>
                 <h1 className=' text-3xl font-semibold text-primary my-4'> Why DayEcho?</h1>
 
@@ -60,7 +60,7 @@ const About = () => {
                 <h1 className=' text-3xl font-semibold text-primary my-4'>   Get Started</h1>
 
                 <p className='md:text-lg text-sm md:font-normal font-light text-textc' >
-                  Ready to embark on a journey of self-discovery and community connection? Sign up for DayEcho today and start sharing your daily echoes with the world.
+                  Ready to embark on a journey of self-discovery and community connection&quest; Sign up for DayEcho today and start sharing your daily echoes with the world.
                 </p>
 
 
