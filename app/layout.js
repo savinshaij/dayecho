@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "DayEcho",
-  description: "created by savin",
+  description: "DayEcho developed by savin",
 };
 
 export default function RootLayout({ children }) {

@@ -34,7 +34,7 @@ const Diary = () => {
 
             <div className='md:my-20 mb-20 md:mb-0 md:px-24 px-5 w-full  flex justify-center items-center  rounded-2xl overflow-y-scroll '>
               <div className=' flex justify-center items-center w-full h-full pt-20 md:pt-0  '>
-                <h1 className=' text-4xl font-bold text-primary my-4'>This feature will be available soon</h1>
+                <h1 className=' text-4xl font-bold text-primary my-4'>This feature will be available soon...</h1>
 
                 
               </div>

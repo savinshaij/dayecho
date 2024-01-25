@@ -12,13 +12,13 @@ export default async function Home() {
 
 
   return (
-    <main className="h-screen   border border-[#1d1d1d08] bg-bgp">
+    <main className="h-screen w-full  px-9    border border-[#1d1d1d08] bg-bgp">
       <div className='flex justify-center items-center  text-center  h-[97%] w-full  overflow-hidden '>
-        <div className=" w-[70%] ">
-          <h1 className="  text-4xl md:text-7xl font-bold  text-primary md:my-6 my-4  "> Welcome to DayEcho!</h1>
+        <div className=" w-full ">
+          <h1 className="  text-4xl md:text-7xl font-bold  text-primary md:my-6 my-4  whitespace-pre-line "> Welcome to DayEcho!</h1>
           <h2 className=" text-base md:text-2xl font-semibold  text-textc  "> Connect, Share, and Chronicle Your Daily Moments.</h2>
           <div className=" flex justify-center items-center ">
-            <p className="  text-sm font-normal md:text-xl text-[#65707b] md:w-[70%]  md:my-4 my-3"> Unlock the power of self-expression and community with DayEcho, where every day is a new chapter waiting to be written.<span className=" hidden md:inline">Dive into a platform designed for sharing your experiences, thoughts, and memories with a vibrant community.</span></p>
+            <p className="  text-sm font-normal md:text-xl text-[#65707b] md:w-[70%]  w-full md:my-4 my-3 whitespace-pre-line"> Unlock the power of self-expression and community with DayEcho, where every day is a new chapter waiting to be written.<span className=" hidden md:inline">Dive into a platform designed for sharing your experiences, thoughts, and memories with a vibrant community.</span></p>
           </div>
 
           <div className="flex justify-center gap-4 w-auto my-2">

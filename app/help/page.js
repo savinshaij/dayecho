@@ -43,43 +43,43 @@ const Help = () => {
 
                 <h1 className=' text-3xl font-semibold text-primary my-4 text-center'>Frequently Asked Questions FAQs</h1>
 
- <ul  >
-  <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
-  How do I create an account?
-  <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
-  To create an account, click on &ldquo;Sign Up&ldquo; and follow the simple registration process. You can sign up using your email or link your account with social media for a seamless experience.
-  </li>
-  </li>
-  <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
-  How can I post to the community?
-  <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
-  Posting to the community is easy! Once you&apos;re logged in, click on the &ldquo;Post&ldquo; button, add your content, and share it with the DayEcho community.
-  </li>
-  </li>
-  <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
-  Where can I find my personal diary?
-  <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
-  Your personal diary is accessible from your profile. Click on your profile picture, and you will find the &ldquo;Diary&ldquo; section where you can write and manage your daily entries.
-  </li>
-  </li>
- </ul>
-    
- 
+                <ul  >
+                  <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
+                    How do I create an account?
+                    <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
+                      To create an account, click on &ldquo;Sign Up&ldquo; and follow the simple registration process. You can sign up using your email or link your account with social media for a seamless experience.
+                    </li>
+                  </li>
+                  <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
+                    How can I post to the community?
+                    <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
+                      Posting to the community is easy! Once you&apos;re logged in, click on the &ldquo;Post&ldquo; button, add your content, and share it with the DayEcho community.
+                    </li>
+                  </li>
+                  <li className='md:text-lg text-sm  my-3 font-bold text-textc'>
+                    Where can I find my personal diary?
+                    <li className='md:text-lg text-sm md:font-normal font-light text-textc'>
+                      Your personal diary is accessible from your profile. Click on your profile picture, and you will find the &ldquo;Diary&ldquo; section where you can write and manage your daily entries.
+                    </li>
+                  </li>
+                </ul>
 
-              <p className='md:text-lg text-sm  my-5 font-bold text-primary'>If you have a specific question or need personalized assistance, our support team is ready to help. You can reach us through the following channels:</p> 
-<p  className='md:text-lg text-sm md:font-normal font-light text-textc'>
 
-Email Support: savinshaij19@gmail.com <br/>
-                Community Forums: Join discussions and seek help from the DayEcho community.
-</p>
-              
-               
 
-       <p className='md:text-lg text-sm md:font-normal font-light text-textc my-4'>
-       Thank you for choosing DayEcho! We are here to make your journey with us enjoyable and fulfilling.<br/>
+                <p className='md:text-lg text-sm  my-5 font-bold text-primary'>If you have a specific question or need personalized assistance, our support team is ready to help. You can reach us through the following channels:</p>
+                <p className='md:text-lg text-sm md:font-normal font-light text-textc'>
 
-<p className=' py-7'>The DayEcho Support Team</p>
-        </p>         
+                  Email Support: savinshaij19@gmail.com <br />
+                  Community Forums: Join discussions and seek help from the DayEcho community.
+                </p>
+
+
+
+                <p className='md:text-lg text-sm md:font-normal font-light text-textc my-4'>
+                  Thank you for choosing DayEcho! We are here to make your journey with us enjoyable and fulfilling.<br />
+
+                  <p className=' py-7'>The DayEcho Support Team</p>
+                </p>
               </div>
 
             </div>

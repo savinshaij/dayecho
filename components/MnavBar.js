@@ -19,7 +19,7 @@ const MnavBar = () => {
         return (
 
         
-            <div className='md:hidden fixed w-full z-50 px-6 py-5 bg-[#36404a] '>
+            <div className='md:hidden fixed w-full z-50 px-6 py-4 bg-[#36404a] '>
     
                 <nav className="flex justify-between items-center  w-full">
                 <h3 className="  text-primary font-bold text-2xl font-sans">DayEcho</h3>

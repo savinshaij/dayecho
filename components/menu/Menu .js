@@ -17,7 +17,7 @@ export default function Menu() {
 
     return (
         <div className=" fixed  h-full  ">
-            <aside className="flex flex-col w-[60%]  md:w-[160%]   h-screen px-7  border-gray-800 py-8 overflow-y-auto bg-bgs border-r rtl:border-r-0 rtl:border-l ">
+            <aside className="flex flex-col w-[60%]  md:w-[160%]   h-screen px-7   py-8 overflow-y-auto bg-bgs  ">
                 <div className="flex justify-center my-5">
                    <h3 className="  text-primary font-bold text-3xl font-sans">DayEcho</h3>
                 </div>

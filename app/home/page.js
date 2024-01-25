@@ -1,44 +1,58 @@
 "use client";
 import Menu from '@/components/menu/Menu '
+import Quote from 'inspirational-quotes'
 import React from 'react'
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
 export default function Page() {
     const { data: session, status: sessionStatus } = useSession();
-    if (sessionStatus === "loading"){
+    const userName = session?.user.name;
+    const {text:quotes ,author:Author}= Quote.getQuote();
+    if (sessionStatus === "loading") {
         return <h1>Loading...</h1>;
     }
     if (sessionStatus === "unauthenticated") {
         redirect("/")
     }
     return (
-        <div className='flex justify-between h-screen w-full  '>            
-        <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
-            <div className='hidden  md:grid w-[50%] h-screen     '>
-                <Menu />
-            </div>
-            <div className='md:hidden  grid'>
-                <BottomMenu/>
-            </div>
-            <div className='      w-full  my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
-                <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl overflow-y-scroll  ">
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-                    <div className=' h-5 my-14 w-full  bg-slate-500'></div>
-
+        <div className='flex justify-between h-screen w-full  '>
+            <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
+                <div className='hidden  md:grid w-[50%] h-screen     '>
+                    <Menu />
+                </div>
+                <div className='md:hidden  grid'>
+                    <BottomMenu />
+                </div>
+                <div className='      w-full  my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
+                    <div className=" w-full h-full  md:px-32 px-5   md:pt-16 md:bg-[#323a43] rounded-3xl overflow-y-scroll  ">
+                        <div className=' my-5'>
+                            <h1 className=' text-4xl md:text-5xl font-bold text-textc  my-4'>Hey, {userName}</h1>
+                        </div>
+                        <div className=' my-5 py-3 px-3 text-center  bg-primary rounded-2xl md:py-7 md:my-12'>
+                            <h2 className=' text-gray-900 font-bold text-lg text-center md:text-2xl '> Today&apos;s Quote</h2>
+                            <p className=' text-gray-800 mt-3  font-medium text-sm md:text-lg '>{quotes}</p>
+                            <div className=' w-full px-14'>
+                            <p className=' text-gray-800  mt-3  font-medium text-xs md:text-sm  text-end'>-{Author}</p>
+                            </div>
+                           
+                        </div>
+                        <div className=' my-5 '>
+                            <h2 className=' text-textc font-semibold text-lg text-center md:text-3xl md:font-bold my-9 '>For you</h2>
+                            <div className=' mb-5 '>
+                                <div className=' mx-5'>
+                                <h2 className=' text-primary font-bold text-lg md:text-xl'>Savin Shaij</h2>
+                                <p className=' text-gray-300 my-3  font-medium text-sm md:text-lg'>hello everyone,Join us in this journey of sharing, connecting, and embracing the beauty of the everyday</p>
+                                <p className=' text-end text-gray-400 text-sm md:text-base my-1'>25-01-2024</p>
+                                </div>
+                                <hr className='  text-slate-900' />
+                            </div>
+                           
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>   
     )
 }
 
