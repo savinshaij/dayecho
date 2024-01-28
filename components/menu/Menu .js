@@ -56,7 +56,7 @@ export default function Menu() {
                             href="/friends"
                         >
                           <FaUserFriends/>
-                            <span className="mx-4 font-medium">Frends</span>
+                            <span className="mx-4 font-medium">Friends</span>
                         </Link>
                        
                         <Link

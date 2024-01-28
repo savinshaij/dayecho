@@ -23,8 +23,10 @@ export default function Page() {
                 </div>
                 <div className='      w-full  my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
                     <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl overflow-y-scroll  ">
-                        <div className=' flex justify-center items-center w-full h-full pt-20 md:pt-0  '>
-                            <h1 className=' text-4xl font-bold text-primary my-4'>This feature will be available soon....</h1>
+                        <div className=' flex justify-center items-center w-full h-full  py-52 '>
+                            <div className=' flex justify-center  items-center h-full w-full bg-bgs  rounded-3xl'>
+                            <label className=' text-5xl font-bold text-primary  text-center'> Add your Diary</label>
+                            </div>
 
 
                         </div>
