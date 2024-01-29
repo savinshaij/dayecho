@@ -1,20 +1,40 @@
 "use client";
 import Menu from '@/components/menu/Menu '
 import Quote from 'inspirational-quotes'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
 export default function Page() {
+    const [allPost,setAllPost]=useState([]);
     const { data: session, status: sessionStatus } = useSession();
     const userName = session?.user.name;
     const {text:quotes ,author:Author}= Quote.getQuote();
+
+useEffect(() => {
+  
+
+  fetch('/api/getPost').then(res => {
+    res.json().then(msgs => {
+        setAllPost(msgs.Fetchedmessage);
+
+        console.log(msgs.Fetchedmessage)
+        
+   })
+})
+}, [])
+
+
+
     if (sessionStatus === "loading") {
-        return <h1>Loading...</h1>;
+        return <div class="inputloader "></div>;
     }
     if (sessionStatus === "unauthenticated") {
         redirect("/")
     }
+   
+
+   
     return (
         <div className='flex justify-between h-screen w-full  '>
             <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
@@ -39,15 +59,19 @@ export default function Page() {
                         </div>
                         <div className=' my-5 '>
                             <h2 className=' text-textc font-semibold text-lg text-center md:text-3xl md:font-bold my-9 '>For you</h2>
+                            {allPost.map((msgs, index) => (
                             <div className=' mb-5 '>
                                 <div className=' mx-5'>
-                                <h2 className=' text-primary font-bold text-lg md:text-xl'>Savin Shaij</h2>
-                                <p className=' text-gray-300 my-3  font-medium text-sm md:text-lg'>hello everyone,Join us in this journey of sharing, connecting, and embracing the beauty of the everyday</p>
-                                <p className=' text-end text-gray-400 text-sm md:text-base my-1'>25-01-2024</p>
+                                <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
+                                <p className=' text-gray-300  my-1  font-semibold text-sm md:text-lg'>{msgs.subject}:</p>
+                                <p className=' pl-3 text-gray-400  font-light text-xs md:text-base'>-{msgs.message}</p>
+                                <p className=' text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
                                 </div>
                                 <hr className='  text-slate-900' />
                             </div>
+                            ))}
                            
+
                         </div>
                     </div>
                 </div>

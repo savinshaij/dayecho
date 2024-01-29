@@ -19,7 +19,7 @@ const Profile = () => {
     if (sessionStatus === "loading") {
         return (
             <div className="flex min-h-screen flex-col items-center justify-between p-24">
-                loading.....
+               <div class="inputloader "></div>
             </div>
         );
     }
@@ -60,106 +60,31 @@ const Profile = () => {
                                                 className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 md:text-base text-sm font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md"
                                             />
                                         </div>
-                                        <div className="-mx-3 flex flex-wrap">
-                                            <div className="w-full px-3 sm:w-1/2">
-                                                <div className="md:mb-5 mb-3">
-                                                    <label
-
-                                                        className="md:mb-3 mb-2  block md:text-base text-sm font-medium text-textc"
-                                                    >
-                                                        Email
-                                                    </label>
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        id="email"
-                                                        value={email}
-
-                                                        className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md cursor-not-allowed  "
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="w-full px-3 sm:w-1/2">
-                                                <div className="md:mb-5 mb-3">
-                                                    <label
-
-                                                        className="md:mb-3 mb-2  block md:text-base text-sm font-medium text-textc"
-                                                    >
-                                                        Phone Number
-                                                    </label>
-                                                    <input
-                                                        type="number"
-                                                        name="PhoneNumber"
-                                                        id="PhoneNumber"
-                                                        placeholder="**********"
-                                                        className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div className="md:mb-5 mb-3">
                                             <label
 
-                                                className="md:mb-3 mb-2  block md:text-base text-sm font-medium text-textc"
+                                                className="md:mb-3 mb-2 block md:text-base text-sm font-medium text-textc"
                                             >
-                                                Address
+                                                Email
                                             </label>
                                             <input
-                                                type="text"
-                                                name="Address"
-                                                id="Address"
-                                                placeholder="Address"
-                                                className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md"
+                                                 type="email"
+                                                 name="email"
+                                                 id="email"
+                                                 value={email}
+                                                
+                                                className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 md:text-base text-sm font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md"
                                             />
                                         </div>
-                                        <div className="-mx-3 flex flex-wrap">
-                                            <div className="w-full px-3 sm:w-1/2">
-                                                <div className="md:mb-5 mb-3">
-                                                    <label
+                                       
 
-                                                        className="md:mb-3 mb-2  block md:text-base text-sm font-medium text-textc"
-                                                    >
-                                                        Country
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        name="Country"
-                                                        id="Country"
-                                                        placeholder="Country"
-                                                        value="india"
-                                                        className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="w-full px-3 sm:w-1/2">
-                                                <div className="md:mb-5 mb-3">
-                                                    <label
-
-                                                        className="md:mb-3 mb-2  block md:text-base text-sm font-medium text-textc"
-                                                    >
-                                                        City
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        name="City"
-                                                        id="City"
-                                                        placeholder="City"
-                                                        className="w-full rounded-md border border-[#e0e0e0] bg-[#38414b] md:py-3 py-2 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-primary focus:shadow-md"
-                                                    />
-                                                </div>
-                                            </div>
+                                        <div className="md:mb-5 mb-3">
+                                          
                                         </div>
+                                       
 
 
-                                        <div>
-                                            <button
-                                                className="hover:shadow-form rounded-md  bg-primary md:py-3 py-2 md:px-8 px-4 text-center text-base font-semibold text-gray-800 outline-none"
-                                                type="submit"
-                                            >
-                                                Change
-                                            </button>
-                                        </div>
+                                      
                                     </form>
                                 </div>
                             </div>
