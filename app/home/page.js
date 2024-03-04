@@ -6,33 +6,33 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
 export default function Page() {
-    const [allPost,setAllPost]=useState([]);
+    const [allPost, setAllPost] = useState([]);
     const { data: session, status: sessionStatus } = useSession();
     const userName = session?.user.name;
-    const {text:quotes ,author:Author}= Quote.getQuote();
+    const { text: quotes, author: Author } = Quote.getQuote();
 
-useEffect(() => {
-    fetch('/api/getPost').then(res => {
-        res.json().then(msgs => {
-            setAllPost(msgs.Fetchedmessage);
-    
-            console.log(msgs.Fetchedmessage)
-            
-       })
-    })
+    useEffect(() => {
+        fetch('/api/getPost').then(res => {
+            res.json().then(msgs => {
+                setAllPost(msgs.Fetchedmessage);
 
-}, [])
+                console.log(msgs.Fetchedmessage)
 
-const getData= ()=>{
-fetch('/api/getPost').then(res => {
-    res.json().then(msgs => {
-        setAllPost(msgs.Fetchedmessage);
+            })
+        })
 
-        console.log(msgs.Fetchedmessage)
-        
-   })
-})
-}
+    }, [])
+
+    const getData = () => {
+        fetch('/api/getPost').then(res => {
+            res.json().then(msgs => {
+                setAllPost(msgs.Fetchedmessage);
+
+                console.log(msgs.Fetchedmessage)
+
+            })
+        })
+    }
 
     if (sessionStatus === "loading") {
         return <div class="inputloader "></div>;
@@ -40,9 +40,9 @@ fetch('/api/getPost').then(res => {
     if (sessionStatus === "unauthenticated") {
         redirect("/")
     }
-   
 
-   
+
+
     return (
         <div className='flex justify-between h-screen w-full  '>
             <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
@@ -61,28 +61,29 @@ fetch('/api/getPost').then(res => {
                             <h2 className=' text-gray-900 font-bold text-lg text-center md:text-2xl '> Today&apos;s Quote</h2>
                             <p className=' text-gray-800 mt-3  font-medium text-sm md:text-lg '>{quotes}</p>
                             <div className=' w-full px-14'>
-                            <p className=' text-gray-800  mt-3  font-medium text-xs md:text-sm  text-end'>-{Author}</p>
+                                <p className=' text-gray-800  mt-3  font-medium text-xs md:text-sm  text-end'>-{Author}</p>
                             </div>
-                           
+
                         </div>
                         <div className=' my-5 '>
-                            <div className='flex justify-between items-center gap-x-6'>
-                            <h2 className=' text-textc font-semibold text-lg text-center md:text-3xl md:font-bold my-9 '>For you</h2>
-                            <button  className=' bg-slate-400 px-3 py-2 rounded-lg' onClick={getData}>refresh</button>
-                            </div>
-                            
-                            {allPost.map((msgs, index) => (
-                            <div className=' mb-5 ' key={index}>
-                                <div className=' mx-5'>
-                                <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
-                                <p className=' text-gray-300  my-1  font-semibold text-sm md:text-lg'>{msgs.subject}:</p>
-                                <p className=' pl-3 text-gray-400  font-light text-xs md:text-base'>-{msgs.message}</p>
-                                <p className=' text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
+
+                            <h2 className=' text-textc font-medium text-lg text-center md:text-2xl md:font-medium my-9 '>For you</h2>
+
+<div className='w-full h-full  flex flex-col-reverse'>
+{allPost.map((msgs) => (
+                                <div className=' mb-5 ' key={msgs.subject} >
+                                    <div className=' mx-5'>
+                                        <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
+                                        <p className=' text-gray-300  my-1  font-semibold text-sm md:text-lg'>{msgs.subject}:</p>
+                                        <p className=' pl-3 text-gray-400  font-light text-xs md:text-base'>-{msgs.message}</p>
+                                        <p className=' text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
+                                    </div>
+                                    <hr className='  text-slate-900' />
                                 </div>
-                                <hr className='  text-slate-900' />
-                            </div>
                             ))}
+</div>
                            
+
 
                         </div>
                     </div>

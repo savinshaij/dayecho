@@ -82,13 +82,13 @@ export default function Page() {
                 </div>
                 <div className='      w-full  my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
                     <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl overflow-y-scroll  ">
-                        <div className=' flex justify-center items-center w-full h-full  py-52 '>
+                        <div className=' flex justify-center items-center w-full h-full   '>
                             <form  onSubmit={handleSubmit} >
-                            <input placeholder='Subject...' className='   pl-6  outline-none md:text-lg text-sm text-white w-full bg-bgp my-3 py-4 rounded-xl ' type="text"  value={subject} onChange={e => setSubject(e.target.value)}/>
-                            <textarea placeholder='content...' className='   pl-6  outline-none md:text-lg text-sm text-white w-full bg-bgp my-3 md:h-80  h-56  py-5 rounded-xl overflow-y-scroll  ' type="text"  value={message} onChange={e => setMessage(e.target.value)} />
-                            <input placeholder='hashtags.' className='   pl-6  outline-none md:text-lg text-sm text-white w-full bg-bgp my-3  py-4 rounded-xl ' type="text"  value={tag} onChange={e => setTag(e.target.value)} />
+                            <input placeholder='Subject...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 py-3 rounded-xl ' type="text"  value={subject} onChange={e => setSubject(e.target.value)}/>
+                            <textarea placeholder='content...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 md:h-72   h-56  py-5 rounded-xl overflow-y-scroll  ' type="text"  value={message} onChange={e => setMessage(e.target.value)} />
+                            <input placeholder='hashtags.' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3  py-3 rounded-xl ' type="text"  value={tag} onChange={e => setTag(e.target.value)} />
                             <div className=' w-full flex justify-end'>
-                            <button className='transition-all active:scale-95  py-2 px-6 my-3  rounded-xl bg-primary text-gray-700 font-medium text-base text-end' type='submit'>post</button>
+                            <button className='transition-all active:scale-95  py-1 px-4 my-3  rounded-lg bg-primary text-gray-700 font-medium  text-sm text-end' type='submit'>post</button>
                             </div>
 
                             </form>
