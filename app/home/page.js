@@ -12,7 +12,14 @@ export default function Page() {
     const {text:quotes ,author:Author}= Quote.getQuote();
 
 useEffect(() => {
-
+    fetch('/api/getPost').then(res => {
+        res.json().then(msgs => {
+            setAllPost(msgs.Fetchedmessage);
+    
+            console.log(msgs.Fetchedmessage)
+            
+       })
+    })
 
 }, [])
 
