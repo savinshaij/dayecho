@@ -2,7 +2,7 @@ import { connectMongoDB } from "@/lib/mongodb";
 import CommunityMsg from "@/models/communityMsg";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-
+export const dynamic = 'force-dynamic';
 export async function GET(req) {
   try {
    
