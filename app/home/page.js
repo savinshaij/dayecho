@@ -12,9 +12,12 @@ export default function Page() {
     const {text:quotes ,author:Author}= Quote.getQuote();
 
 useEffect(() => {
-  
 
-  fetch('/api/getPost').then(res => {
+
+}, [])
+
+const getData= ()=>{
+fetch('/api/getPost').then(res => {
     res.json().then(msgs => {
         setAllPost(msgs.Fetchedmessage);
 
@@ -22,9 +25,7 @@ useEffect(() => {
         
    })
 })
-}, [])
-
-
+}
 
     if (sessionStatus === "loading") {
         return <div class="inputloader "></div>;
@@ -58,7 +59,11 @@ useEffect(() => {
                            
                         </div>
                         <div className=' my-5 '>
+                            <div className='flex justify-between items-center gap-x-6'>
                             <h2 className=' text-textc font-semibold text-lg text-center md:text-3xl md:font-bold my-9 '>For you</h2>
+                            <button  className=' bg-slate-400 px-3 py-2 rounded-lg' onClick={getData}>refresh</button>
+                            </div>
+                            
                             {allPost.map((msgs, index) => (
                             <div className=' mb-5 ' key={index}>
                                 <div className=' mx-5'>
