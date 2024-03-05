@@ -28,7 +28,7 @@ const DropDown = () => {
                     style={{ originY: "top", translateX: "-50%" }}
                     className="flex flex-col gap-2 p-2 rounded-lg bg-bgp shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
                 >
-                  <Link href='/friends' className="  text-textc"> <Option setOpen={setOpen} Icon={FaUserFriends} text="Friends" /></Link>  
+                  {/* <Link href='/friends' className="  text-textc"> <Option setOpen={setOpen} Icon={FaUserFriends} text="Friends" /></Link>   */}
                   <Link href='/help' className="  text-textc" >  <Option setOpen={setOpen} Icon={FaHandsHelping } text="Help" /></Link>
                     <Link href='/about' className="  text-textc" >   <Option setOpen={setOpen} Icon={FaCircleExclamation} text="About" /></Link> 
                  <button onClick={() => { signOut() }} className=" bg-textc text-gray-900  rounded-lg "><Option setOpen={setOpen} Icon={FaSignOutAlt} text="Logout" /></button>   

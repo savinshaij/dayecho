@@ -10,20 +10,19 @@ import Link from 'next/link';
 
 // Create your Next.js component
 const Profile = () => {
-
-    const [time, setTime] = useState("o");
-    const [date, setDate] = useState("o");
-    const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
-    const [isMsgFetchLoadingOn, setIsMsgFetchLoadingOn] = useState(false)
+    
+    const [time,setTime]=useState();
+    const [date, setDate] = useState();
+    const [isInputSpinnerOn,setIsInputSpinnerOn] =useState(false)
+    const [isMsgFetchLoadingOn,setIsMsgFetchLoadingOn] =useState(false)
     const bottomRef = useRef(null);
+    const { data: session } = useSession();
     const { status: sessionStatus } = useSession();
+    const [name, setName] = useState(session?.user?.name);
+    const [email, setEmail] = useState(session?.user?.email);
     const [message, setMessage] = useState('');
     const [allMessage, setAllMessage] = useState([]);
-    const { data: session } = useSession()
-    const name = session?.user.name;
-    const email = session?.user.email;
-    // let user = userName || userEmail;
-    
+
     function getTime() {
         const today = new Date();
         var hours = today.getHours();
@@ -31,11 +30,11 @@ const Profile = () => {
         var ampm = hours >= 12 ? 'pm' : 'am';
         hours = hours % 12;
         hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0' + minutes : minutes;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
         var strTime = hours + ':' + minutes + ' ' + ampm;
-
-        return (strTime);
-    }
+        
+        return (strTime );
+      }
 
 
     function getDate() {
@@ -43,37 +42,39 @@ const Profile = () => {
         const month = today.getMonth() + 1;
         const year = today.getFullYear();
         const date = today.getDate();
-        const showDate = date + ':' + month + ":" + year;
-        return (showDate);
-    }
+        const showDate =date + ':' + month + ":" + year;
+       
+        
+        return ( showDate);
+      }
 
 
-     useEffect(() => {
+    useEffect(() => {
 
-         fetchmessages();
+       fetchmessages();
 
-     }, [message])
+    }, [message])
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [allMessage])
 
 
-     function fetchmessages() {
-         setIsMsgFetchLoadingOn(true);
-         fetch('/api/communityMsgGet').then(res => {
-             res.json().then(msgs => {
-                 setAllMessage(msgs.Fetchedmessage);
+    function fetchmessages() {
+        setIsMsgFetchLoadingOn(true);
+        fetch('/api/communityMsgGet').then(res => {
+            res.json().then(msgs => {
+                setAllMessage(msgs.Fetchedmessage);
 
-                 console.log(msgs.Fetchedmessage)
-                 setIsMsgFetchLoadingOn(false);
-             })
-         })
+                console.log(msgs.Fetchedmessage)
+                setIsMsgFetchLoadingOn(false);
+           })
+       })
 
-     }
+   }
     const handleSubmit = async (e) => {
-        // e.preventDefault()
-         setIsInputSpinnerOn(true);
+        e.preventDefault()
+        setIsInputSpinnerOn(true);
         setTime(getTime());
         setDate(getDate());
         try {
@@ -93,9 +94,9 @@ const Profile = () => {
 
             if (res.ok) {
                 setMessage(' ');
-                 setIsInputSpinnerOn(false);
+                setIsInputSpinnerOn(false);
             } else {
-                console.log(res);
+                console.log("failed posting message.");
             }
         } catch (error) {
             console.log("Error sending message: ", error);
@@ -136,17 +137,17 @@ const Profile = () => {
                         <div className='      w-full my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
                             <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
                                 <div className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
-                                    {/* {isMsgFetchLoadingOn && <div class="inputloader"></div>} */}
+                                {isMsgFetchLoadingOn && <div class="inputloader"></div>}
                                     {allMessage.map((msgs, index) => (
 
-                                        <div key={index} className='max-w-xs bg-bgs rounded-tl-none pb-3 px-3 pt-1 mx-2 my-3  rounded-3xl'>
-                                            <div className='flex w-full justify-between h-full items-center'>
-                                                <h3 className=' my-2 md:text-lg text-base font-bold text-primary'> {msgs.name}</h3>
-                                                <p className=' text-gray-500 text-xs text-end'>{msgs.date}</p>
-                                            </div>
-                                            <p className='   md:text-base text-sm text-textc   '> {msgs.message} </p>
-                                            <p className=' text-gray-500 text-xs text-end'>{msgs.time}</p>
+                                       <div key={index} className='max-w-xs bg-bgs rounded-tl-none pb-3 px-3 pt-1 mx-2 my-3  rounded-3xl'>
+                                        <div className='flex w-full justify-between h-full items-center'>
+                                        <h3 className=' my-2 md:text-lg text-base font-bold text-primary'> {msgs.name}</h3>
+                                        <p className=' text-gray-500 text-xs text-end'>{msgs.date}</p>
                                         </div>
+                                         <p  className='   md:text-base text-sm text-textc   '> {msgs.message} </p>
+                                         <p className=' text-gray-500 text-xs text-end'>{msgs.time}</p>
+                                       </div>
 
 
                                     ))}
@@ -156,13 +157,13 @@ const Profile = () => {
                                 <div className=' w-full   fixed md:relative     bottom-1  md:py-0 py-4    justify-center md:pt-4 items-end    '>
 
 
-                                    <div className='  md:pl-6 pl-4 pr-2  self-end   w-full md:h-14 h-12 border-[0.5px]    flex justify-center items-center gap-3   rounded-full bottom-1  bg-[#2c3338] border-gray-600' >
-                                        <input placeholder='messages...' className='   pl-6 bg-transparent outline-none md:text-lg text-sm text-white w-full h-full' type="text" value={message} onChange={e => setMessage(e.target.value)} onKeyPress={(event) => { event.key === "Enter" && handleSubmit(); }} />
-                                         {isInputSpinnerOn && <div class="inputloader"></div>}  
-                                        <button className=' bg-primary py-2 px-2 rounded-full' onClick={handleSubmit}>
+                                    <form className='  md:pl-6 pl-4 pr-2  self-end   w-full md:h-14 h-12 border-[0.5px]    flex justify-center items-center gap-3   rounded-full bottom-1  bg-[#2c3338] border-gray-600' onSubmit={handleSubmit}>
+                                        <input placeholder='messages...' className='   pl-6 bg-transparent outline-none md:text-lg text-sm text-white w-full h-full' type="text" value={message} onChange={e => setMessage(e.target.value)} />
+                                    {isInputSpinnerOn && <div class="inputloader"></div>} 
+                                        <button className=' bg-primary py-2 px-2 rounded-full' type='submit'  >
                                             <IoSend className=' md:h-6 md:w-6 w-3 h-3 text-gray-800' />
                                         </button>
-                                    </div>
+                                    </form>
 
 
 

@@ -51,13 +51,13 @@ export default function Menu() {
                           <IoSend />
                             <span className="mx-4 font-medium">Create post</span>
                         </Link>
-                        <Link
+                        {/* <Link
                            className={path === '/friends' ? 'active' : ''}
                             href="/friends"
                         >
                           <FaUserFriends/>
                             <span className="mx-4 font-medium">Friends</span>
-                        </Link>
+                        </Link> */}
                        
                         <Link
                             className={path === '/help' ? 'active' : ''}

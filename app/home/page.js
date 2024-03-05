@@ -78,7 +78,7 @@ export default function Page() {
                                         <p className=' pl-3 text-gray-400  font-light text-xs md:text-base'>-{msgs.message}</p>
                                         <p className=' text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
                                     </div>
-                                    <hr className='  text-slate-900' />
+                                    <hr color='#F6C90E' />
                                 </div>
                             ))}
 </div>

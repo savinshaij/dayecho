@@ -9,7 +9,9 @@ html{
   background-color:#303841 ;
 }
 
-
+textarea {
+  white-space: pre-wrap;
+}
 * {
   scroll-behavior: smooth;
   scrollbar-width:5px;
@@ -172,3 +174,30 @@ div.navs > * {
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
