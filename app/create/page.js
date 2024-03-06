@@ -86,7 +86,7 @@ export default function Page() {
                             <form  onSubmit={handleSubmit} >
                             <input placeholder='Subject...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 py-3 rounded-xl ' type="text"  value={subject} onChange={e => setSubject(e.target.value)}/>
                             <textarea placeholder='content...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 md:h-72   h-56  py-5 rounded-xl overflow-y-scroll  ' type="text"  value={message} onChange={e => setMessage(e.target.value)} />
-                            <input placeholder='hashtags.' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3  py-3 rounded-xl ' type="text"  value={tag} onChange={e => setTag(e.target.value)} />
+                            <input placeholder='#food #tech etc...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3  py-3 rounded-xl ' type="text"  value={tag} onChange={e => setTag(e.target.value)} />
                             <div className=' w-full flex justify-end'>
                             <button className='transition-all active:scale-95  py-1 px-4 my-3  rounded-lg bg-primary text-gray-700 font-medium  text-sm text-end' type='submit'>post</button>
                             </div>
