@@ -80,6 +80,9 @@ export default function Page() {
                                         <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
                                         <p className=' text-gray-300  my-1  font-semibold text-sm md:text-lg'>{msgs.subject}:</p>
                                         <p className=' pl-3 text-gray-400  font-light text-xs md:text-base'>-{msgs.message}</p>
+                                        <div>
+                                        <p className=' pl-3 py-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p> 
+                                        </div>
                                         <p className=' text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
                                     </div>
                                     <hr color='#F6C90E' />
