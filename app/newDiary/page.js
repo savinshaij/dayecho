@@ -105,7 +105,7 @@ const Diary = () => {
             
 
 
-              <div className=' h-full  w-full bg-[#ffffff08] md:rounded-3xl rounded-xl px-5 py-5'>
+              <div className=' h-full  w-full bg-[#ffffff08] md:rounded-3xl rounded-xl px-5 mb-1'>
                 <div className=' mb-5 flex  gap-3'>
                   <input className='bg-[#ffffff0f] w-full px-4 md:rounded-xl rounded-md text-sm md:text-lg py-3 text-white outline-none' placeholder='Titile of the day!' type="text"  value={title} onChange={e => setTitle(e.target.value)} />
                   <input className='bg-[#ffffff0f] w-[30%] px-4 md:rounded-xl rounded-md py-3 text-sm md:text-lg text-white outline-none ' placeholder='How was your mood today' type="text"  value={mood} onChange={e => setMood(e.target.value)}/>
