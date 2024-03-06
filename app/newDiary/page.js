@@ -7,7 +7,6 @@ import Menu from '@/components/menu/Menu ';
 import BottomMenu from '@/components/menu/BottomMenu';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
-import DiaryDoneModal from '@/components/modal/diaryDoneModal';
 import Link from 'next/link';
 
 // Create your Next.js component
