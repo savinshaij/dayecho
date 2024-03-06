@@ -17,10 +17,10 @@ const Diary = () => {
   const { data: session } = useSession()
   const name = session?.user.name;
   const email = session?.user.email;
-
+  const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
 
   const getData = () => {
-
+setIsInputSpinnerOn(true);
    fetch("/api/getDiary", {
           method: "POST",
           headers: {
@@ -32,6 +32,7 @@ const Diary = () => {
           }),
       }).then(res => {
         res.json().then(msgs => {
+          setIsInputSpinnerOn(false);
             setDiary(msgs.Fetchedmessage);
             console.log(msgs.Fetchedmessage)
 
@@ -91,20 +92,22 @@ const Diary = () => {
                     placeholder="DD-MM-YYYY" 
                      value={date} 
                      onChange={e => setDate(e.target.value)}
+                     onKeyPress={(event) => { event.key === "Enter" && getData(); }}
                   />
                 </div>
 
                 <button className=' bg-white text-black text-md font-semibold py-2 px-4  rounded-xl mx-3' onClick={getData}> search</button>
 
               </div>
-              <div className=' h-full w-full bg-[#ffffff08] rounded-3xl'>
+              <div className=' h-full w-full  bg-[#ffffff08] rounded-3xl'>
+              {isInputSpinnerOn && <div className=' w-full  h-full flex justify-center pt-20'><div className="inputloader   "></div> </div>}  
               {diary.map((msgs) => (
                                 <div className=' mb-5 ' key={msgs.date} >
                                     <div className=' mx-5'>
-                                    <p className='pt-10 px-8 text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
-                                        <h2 className='  pt-10 px-8 text-primary font-bold text-lg md:text-5xl'>{msgs.title}</h2>
-                                        <p className='px-8 py-5 text-gray-300  my-1  font-semibold text-sm md:text-lg'>mood at that day was {msgs.mood}</p>
-                                        <p className='px-8  text-gray-400  font-light text-xs md:text-base'>{msgs.content}</p>
+                                    <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{msgs.date}</p>
+                                        <h2 className='  md:pt-10 md:px-8 pt-4 px-2 text-primary font-bold text-lg md:text-5xl'>{msgs.title}</h2>
+                                        <p className='md:px-8 md:py-5 pt-4 px-2 text-gray-300  my-1  font-semibold text-sm md:text-lg'>mood at that day was {msgs.mood}</p>
+                                        <p className='md:px-8 px-2 text-gray-400  font-light text-xs md:text-base'>{msgs.content}</p>
                                         
                                     </div>
                                     

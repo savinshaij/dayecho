@@ -136,7 +136,7 @@ const Profile = () => {
                         <div className='      w-full my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
                             <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
                                 <div className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
-                                    {/* {isMsgFetchLoadingOn && <div class="inputloader"></div>} */}
+                                    {isMsgFetchLoadingOn && <div className="inputloader"></div>} 
                                     {allMessage.map((msgs, index) => (
 
                                         <div key={index} className='max-w-xs bg-bgs rounded-tl-none pb-3 px-3 pt-1 mx-2 my-3  rounded-3xl'>
@@ -158,7 +158,7 @@ const Profile = () => {
 
                                     <div className='  md:pl-6 pl-4 pr-2  self-end   w-full md:h-14 h-12 border-[0.5px]    flex justify-center items-center gap-3   rounded-full bottom-1  bg-[#2c3338] border-gray-600' >
                                         <input placeholder='messages...' className='   pl-6 bg-transparent outline-none md:text-lg text-sm text-white w-full h-full' type="text" value={message} onChange={e => setMessage(e.target.value)} onKeyPress={(event) => { event.key === "Enter" && handleSubmit(); }} />
-                                         {isInputSpinnerOn && <div class="inputloader"></div>}  
+                                         {isInputSpinnerOn && <div className="inputloader"></div>}  
                                         <button className=' bg-primary py-2 px-2 rounded-full' onClick={handleSubmit}>
                                             <IoSend className=' md:h-6 md:w-6 w-3 h-3 text-gray-800' />
                                         </button>
