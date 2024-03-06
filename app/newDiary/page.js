@@ -33,7 +33,7 @@ const Diary = () => {
   const { data: session } = useSession()
   const name = session?.user.name;
   const email = session?.user.email;
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
   const date = getCurrentDate();
 
