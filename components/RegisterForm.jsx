@@ -10,14 +10,18 @@ export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false);
   const router = useRouter();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsDisabled(true);
+setIsInputSpinnerOn(true);
     if (!name || !email || !password) {
       setError("All fields are necessary.");
+      setIsInputSpinnerOn(false);
+      setIsDisabled(false);
       return;
     }
 
@@ -34,9 +38,11 @@ export default function RegisterForm() {
 
       if (user) {
         setError("User already exists.");
+        setIsInputSpinnerOn(false);
+        setIsDisabled(false);
         return;
       }
-
+      setIsInputSpinnerOn(true);
       const res = await fetch("api/register", {
         method: "POST",
         headers: {
@@ -52,18 +58,25 @@ export default function RegisterForm() {
       if (res.ok) {
         const form = e.target;
         form.reset();
+        setIsInputSpinnerOn(false);
+        setIsDisabled(false);
         router.push("/login");
       } else {
+        setIsInputSpinnerOn(false);
+        setIsDisabled(false);
         console.log("User registration failed.");
       }
     } catch (error) {
+      setIsDisabled(false);
+      setIsInputSpinnerOn(false);
       console.log("Error during registration: ", error);
     }
   };
 
   return (
-   
-    sessionStatus !== "authenticated" && (
+    <>
+    {isInputSpinnerOn && <div className="inputloader absolute top-[50%]  left-[50%] "></div>} 
+    {sessionStatus !== "authenticated" && (
  <div className='flex h-screen w-full justify-center items-center  '>
 
       <div className="flex w-full  justify-center items-center max-w-sm mx-auto overflow-hidden  rounded-lg   lg:max-w-4xl">
@@ -129,7 +142,7 @@ export default function RegisterForm() {
             </div>
           )}
                   <div className="mt-6">
-                      <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-[#edff47] focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type='submit'>
+                      <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-[#edff47] focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type='submit' disabled={isDisabled}>
                           Register
                       </button>
                   </div>
@@ -146,6 +159,9 @@ export default function RegisterForm() {
           </div>
       </div>
   </div>
-    )
+  
+    )}
+    </>
   );
+  
 }

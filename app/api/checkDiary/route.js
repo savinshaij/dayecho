@@ -6,13 +6,17 @@ export const dynamic = 'force-dynamic';
 export async function POST(req) {
   try {
     await connectMongoDB();
-    const { email,date } = await req.json();
-    console.log(email+ date);
+    const { email, currentdate } = await req.json();
+    console.log(email + currentdate);
     const Fetchedmessage = await Diary.find({
       email: email,
-      date: date
+      date: currentdate
     });
-    return NextResponse.json({Fetchedmessage });
+
+    // Check if Fetchedmessage array has any entries
+    const objectExists = Fetchedmessage.length > 0;
+
+    return NextResponse.json({ objectExists });
   } catch (error) {
     return NextResponse.json(
       { message: "An error occurred while getting post." },
@@ -20,3 +24,4 @@ export async function POST(req) {
     );
   }
 }
+

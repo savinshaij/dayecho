@@ -11,8 +11,8 @@ import Link from 'next/link';
 // Create your Next.js component
 const Profile = () => {
 
-    const [time, setTime] = useState("o");
-    const [date, setDate] = useState("o");
+    const [time, setTime] = useState("-");
+    const [date, setDate] = useState("-");
     const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
     const [isMsgFetchLoadingOn, setIsMsgFetchLoadingOn] = useState(false)
     const bottomRef = useRef(null);
@@ -124,18 +124,24 @@ const Profile = () => {
                         </div>
                         <div className=' fixed md:hidden mt-16  w-full bg-bgp'>
 
-                            <div className='flex w-full h-full justify-start items-center px-5'>
+                            <div className='flex w-full h-full justify-between items-center px-5'>
                                 <Link href='/home'>
                                     <div className=' flex justify-center items-center h-8 w-8  bg-bgs rounded-3xl my-2'>
                                         <IoArrowBackSharp className='h-5 w-5 text-textc ' />
                                     </div>
                                 </Link>
+                                <button className=' text-xs rounded-lg px-2 font-light py-2 bg-[#ffffff1c] text-gray-300' onClick={fetchmessages}>view resent messages</button>
                             </div>
                         </div>
 
                         <div className='      w-full my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
+                       
                             <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
                                 <div className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
+                                    <div className=' hidden md:flex w-full justify-end items-center'>
+                                    <button className=' fixed text-xs font-normal rounded-2xl  px-3 mt-16 py-2 bg-[#ffffff1c] text-white' onClick={fetchmessages}>view resent messages</button>
+                                    </div>
+                               
                                     {isMsgFetchLoadingOn && <div className="inputloader"></div>} 
                                     {allMessage.map((msgs, index) => (
 
@@ -159,7 +165,7 @@ const Profile = () => {
                                     <div className='  md:pl-6 pl-4 pr-2  self-end   w-full md:h-14 h-12 border-[0.5px]    flex justify-center items-center gap-3   rounded-full bottom-1  bg-[#2c3338] border-gray-600' >
                                         <input placeholder='messages...' className='   pl-6 bg-transparent outline-none md:text-lg text-sm text-white w-full h-full' type="text" value={message} onChange={e => setMessage(e.target.value)} onKeyPress={(event) => { event.key === "Enter" && handleSubmit(); }} />
                                          {isInputSpinnerOn && <div className="inputloader"></div>}  
-                                        <button className=' bg-primary py-2 px-2 rounded-full' onClick={handleSubmit}>
+                                        <button className=' bg-primary py-3 px-4 rounded-full' onClick={handleSubmit}>
                                             <IoSend className=' md:h-6 md:w-6 w-3 h-3 text-gray-800' />
                                         </button>
                                     </div>

@@ -11,10 +11,11 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
+    setIsInputSpinnerOn(true);
     e.preventDefault();
 
     try {
@@ -25,22 +26,27 @@ export default function LoginForm() {
       });
 
       if (res.error) {
+        setIsInputSpinnerOn(false);
         setError("Invalid Credentials");
         return;
       }
       else{
+        setIsInputSpinnerOn(false);
         router.replace("/home");
       }
 
      
     
     } catch (error) {
+      setIsInputSpinnerOn(false);
       console.log(error);
     }
   };
 
   return (
-    sessionStatus !== "authenticated" && (
+    <>
+{isInputSpinnerOn && <div className="inputloader absolute top-[50%]  left-[45%] "></div>} 
+   { sessionStatus !== "authenticated" && (
     <div className='flex h-screen w-full justify-center items-center  '>
 
       <div className="flex w-full  justify-center items-center max-w-sm mx-auto overflow-hidden  rounded-lg   lg:max-w-4xl">
@@ -126,6 +132,7 @@ export default function LoginForm() {
         </div>
       </div>
     </div>
-    )
+    )}
+    </>
   );
 }

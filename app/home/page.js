@@ -10,10 +10,13 @@ export default function Page() {
     const { data: session, status: sessionStatus } = useSession();
     const userName = session?.user.name;
     const { text: quotes, author: Author } = Quote.getQuote();
+    const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
 
     useEffect(() => {
+        setIsInputSpinnerOn(true);
         fetch('/api/getPost').then(res => {
             res.json().then(msgs => {
+                setIsInputSpinnerOn(false);
                 setAllPost(msgs.Fetchedmessage);
 
                 console.log(msgs.Fetchedmessage)
@@ -70,6 +73,7 @@ export default function Page() {
                             <h2 className=' text-textc font-medium text-lg text-center md:text-2xl md:font-medium my-9 '>For you</h2>
 
 <div className='w-full h-full  flex flex-col-reverse'>
+{isInputSpinnerOn &&<div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div> }  
 {allPost.map((msgs) => (
                                 <div className=' mb-5 ' key={msgs.subject} >
                                     <div className=' mx-5'>
