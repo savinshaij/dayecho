@@ -210,7 +210,7 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
                 Saved!
               </h3>
               <p className="text-center mb-6">
-                your todays diary  has been saved to the database. now you can view it from my diary session.
+                your todays diary  has been saved to the database. now you can view it from my diary section.
               </p>
               <div className="flex gap-2">
                <Link href="/diary" className='w-full' >
