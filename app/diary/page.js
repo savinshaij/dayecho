@@ -35,7 +35,7 @@ const Diary = () => {
   const name = session?.user.name;
   const email = session?.user.email;
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
-  const encryptionKey = process.env.ENCRIPTION_KEY;
+  const encryptionKey = "codered";
 // Decrypt function
 const decryptText = (ciphertext, key) => {
   const bytes = CryptoJS.AES.decrypt(ciphertext, key);

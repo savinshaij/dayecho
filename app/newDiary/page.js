@@ -38,7 +38,7 @@ const Diary = () => {
   const date = getCurrentDate();
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const encryptionKey = process.env.ENCRIPTION_KEY;
+  const encryptionKey = "codered";
 
 // Encrypt function
 const encryptText = (text, key) => {
@@ -127,14 +127,14 @@ setIsInputSpinnerOn(true);
             </div>
 
             <div className='md:my-20 mb-20 md:mb-0 md:px-24 px-5 w-full rounded-2xl overflow-y-scroll md:py-6'>
-              <div className=' flex justify-center w-full'> <p className=' font-light text-xs text-gray-600'>end-to-end encryption is provided</p></div>
+              <div className=' pt-20 md:pt-0  flex justify-center w-full'> <p className=' font-light text-xs text-gray-600'>end-to-end encryption is provided</p></div>
               <div className='w-full flex '>
-                <div className='   w-full  pt-20 md:pt-0  my-6 '>
+                <div className='   w-full  md:pt-0  my-6 '>
                   <label className=' md:text-6xl text-xl font-medium text-textc '>Todays,</label>
                   <label className=' md:text-6xl text-xl font-bold text-primary my-2 '>Diary</label>
 
                 </div>
-                <div className='pt-20 md:pt-0  flex justify-end w-full items-center px-3'><label className=' text-right md:text-4xl text-lg font-medium text-primary my-2 '> {date}</label></div>
+                <div className=' md:pt-0  flex justify-end w-full items-center px-3'><label className=' text-right md:text-4xl text-lg font-medium text-primary my-2 '> {date}</label></div>
 
               </div>
 
