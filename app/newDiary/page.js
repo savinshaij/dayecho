@@ -8,7 +8,7 @@ import BottomMenu from '@/components/menu/BottomMenu';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-
+import CryptoJS from 'crypto-js';
 // Create your Next.js component
 
 const getCurrentDate = () => {
@@ -29,7 +29,7 @@ const Diary = () => {
   const [show, setShow] = useState("");
   const [title, setTitle] = useState("");
   const [mood, setMood] = useState("");
-  const [content, setContent] = useState("");
+  const [rowContent, setRowContent] = useState("");
   const { data: session } = useSession()
   const name = session?.user.name;
   const email = session?.user.email;
@@ -37,7 +37,29 @@ const Diary = () => {
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
   const date = getCurrentDate();
   const [isDisabled, setIsDisabled] = useState(false);
+
+  const encryptionKey = process.env.ENCRIPTION_KEY;
+
+// Encrypt function
+const encryptText = (text, key) => {
+    return CryptoJS.AES.encrypt(text, key).toString();
+};
+
+
+
+// Example usage
+
+
+
+
+
+
+
+
   const handleSubmit = async (e) => {
+    
+const content = encryptText(rowContent, encryptionKey);
+console.log('Encrypted:', content);
 setIsDisabled(true);
 setIsInputSpinnerOn(true);
     try {
@@ -57,7 +79,7 @@ setIsInputSpinnerOn(true);
 
 
       if (res.ok) {
-        setContent("")
+        setRowContent("")
         setMood("")
         setTitle("")
         setIsInputSpinnerOn(false)
@@ -105,6 +127,7 @@ setIsInputSpinnerOn(true);
             </div>
 
             <div className='md:my-20 mb-20 md:mb-0 md:px-24 px-5 w-full rounded-2xl overflow-y-scroll md:py-6'>
+              <div className=' flex justify-center w-full'> <p className=' font-light text-xs text-gray-600'>end-to-end encryption is provided</p></div>
               <div className='w-full flex '>
                 <div className='   w-full  pt-20 md:pt-0  my-6 '>
                   <label className=' md:text-6xl text-xl font-medium text-textc '>Todays,</label>
@@ -123,7 +146,7 @@ setIsInputSpinnerOn(true);
                   <input className='bg-[#ffffff0f] md:w-[30%] w-full md:px-4 px-2 md:rounded-xl rounded-md py-3 text-sm md:text-lg text-white outline-none ' placeholder='How was your mood today' type="text" value={mood} onChange={e => setMood(e.target.value)} />
                 </div>
 
-                <textarea className=' select-none outline-none w-full whitespace-pre-wrap md:rounded-2xl rounded-md  h-[60vh] bg-[#ffffff0f] md:text-lg text-sm text-white md:px-8 md:py-8 px-3 py-3 ' placeholder='your diary!' type="text" value={content} onChange={e => setContent(e.target.value)}></textarea>
+                <textarea className=' select-none outline-none w-full whitespace-pre-wrap md:rounded-2xl rounded-md  h-[60vh] bg-[#ffffff0f] md:text-lg text-sm text-white md:px-8 md:py-8 px-3 py-3 ' placeholder='your diary!' type="text" value={rowContent} onChange={e => setRowContent(e.target.value)}></textarea>
                 <div className='w-full flex gap-2'>
                   <button className=' bg-white text-black md:text-lg text-base font-semibold  md:py-3 py-2 w-full md:rounded-xl rounded-md  my-5 ' onClick={handleSubmit} disabled={isDisabled}>save</button>
                   <button className='  border-2 border-[#ffffff39] text-white md:text-lg text-base  font-medium md:py-3 w-[30%] md:rounded-xl rounded-md  my-5 ' onClick={goback}>cancel</button>

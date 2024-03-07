@@ -1,24 +1,24 @@
 "use client";
 import Menu from '@/components/menu/Menu '
-
+import Link from 'next/link';
+import { FiAlertCircle } from "react-icons/fi";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useRef, useEffect } from 'react';
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
 
-import { useRouter } from 'next/navigation';
+
 export default function Page() {
-    const router = useRouter();
+    
     const { data: session, status: sessionStatus } = useSession();
-    console.log(session);
     const  email =session?.user?.email;
-    console.log(email);
     const  name = session?.user?.name;
     const  [message, setMessage] = useState('')
     const  [subject, setSubject] = useState('')
     const  [tag, setTag] = useState('')
     const  date = getDate();
-    
+    const [modal, setModal] = useState(false);
 
     function getDate() {
         const today = new Date();
@@ -59,7 +59,8 @@ export default function Page() {
                 setMessage('');
                 setSubject('');
                 setTag('');
-                router.push('/home');
+                setModal(true);
+                
                 
                 
             } else {
@@ -73,6 +74,7 @@ export default function Page() {
    
     return (
         <div className='flex justify-between h-screen w-full  '>
+            <SpringModal isOpen={modal} setIsOpen={setModal} />
             <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
                 <div className='hidden  md:grid w-[50%] h-screen     '>
                     <Menu />
@@ -102,5 +104,97 @@ export default function Page() {
         </div>
     )
 }
+
+
+
+const wrapperVariants = {
+    open: {
+        scaleY: 1,
+        transition: {
+            when: "beforeChildren",
+            staggerChildren: 0.1,
+        },
+    },
+    closed: {
+        scaleY: 0,
+        transition: {
+            when: "afterChildren",
+            staggerChildren: 0.1,
+        },
+    },
+  };
+  
+  
+  
+  const itemVariants = {
+    open: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            when: "beforeChildren",
+        },
+    },
+    closed: {
+        opacity: 0,
+        y: -15,
+        transition: {
+            when: "afterChildren",
+        },
+    },
+  };
+  
+  const actionIconVariants = {
+    open: { scale: 1, y: 0 },
+    closed: { scale: 0, y: -7 },
+  };
+  
+  const SpringModal = ({ isOpen, setIsOpen }) => {
+    return (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0, rotate: "12.5deg" }}
+              animate={{ scale: 1, rotate: "0deg" }}
+              exit={{ scale: 0, rotate: "0deg" }}
+              onClick={(e) => e.stopPropagation()}
+              className=" bg-bgp text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
+            >
+              
+              <div className="relative z-10">
+                <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-primary grid place-items-center mx-auto">
+                  <FiAlertCircle />
+                </div>
+                <h3 className="text-3xl font-bold text-center text-primary mb-2">
+                Post Successful!
+                </h3>
+                <p className="text-center mb-6">
+                Thank you for sharing your thoughts! Your post is now live.
+                </p>
+                <div className="flex gap-2">
+                 <Link href="/home" className='w-full' >
+                 <button
+                    onClick={() => setIsOpen(false)}
+                    className="bg-white hover:opacity-90 transition-opacity text-bgs font-semibold w-full py-2 rounded"
+                  >
+                    Go back yo my Diary
+                  </button>
+                 </Link>
+                  
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  };
+  
 
 

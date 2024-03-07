@@ -12,6 +12,20 @@ html{
 textarea {
   white-space: pre-wrap;
 }
+input{
+  border:none ;
+}
+input:focus{
+  
+  outline: none !important;
+  border-color: #F6C90E !important;
+  box-shadow: none !important;
+}
+textarea:focus{
+  outline: none !important;
+  border-color: #F6C90E !important;
+  box-shadow: none !important;
+}
 * {
   scroll-behavior: smooth;
   scrollbar-width:5px;

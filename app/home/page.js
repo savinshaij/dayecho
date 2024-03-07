@@ -72,24 +72,24 @@ export default function Page() {
 
                             <h2 className=' text-textc font-medium text-lg text-center md:text-2xl md:font-medium my-9 '>For you</h2>
 
-<div className='w-full h-full  flex flex-col-reverse'>
-{isInputSpinnerOn &&<div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div> }  
-{allPost.map((msgs) => (
-                                <div className=' mb-5 ' key={msgs.subject} >
-                                    <div className=' mx-5'>
-                                        <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
-                                        <p className=' text-gray-300  my-1  font-semibold text-sm md:text-lg'>{msgs.subject}:</p>
-                                        <p className=' pl-3 text-gray-400  font-light text-xs md:text-base'>-{msgs.message}</p>
-                                        <div>
-                                        <p className=' pl-3 py-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p> 
+                            <div className='w-full h-full  flex flex-col-reverse'>
+                                {isInputSpinnerOn && <div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div>}
+                                {allPost.map((msgs) => (
+                                    <div className=' mb-5 ' key={msgs.subject} >
+                                        <div className=' mx-5'>
+                                            <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
+                                            <p className=' text-gray-300  my-1  font-medium text-base md:text-lg'>{msgs.subject}:</p>
+                                            <p className=' text-gray-400 font-normal text-sm md:text-base'>{msgs.message}</p>
+                                            <div>
+                                                <p className='pt-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p>
+                                            </div>
+                                            <p className=' text-end  text-gray-400 font-normal text-xs md:text-base my-1'>{msgs.date}</p>
                                         </div>
-                                        <p className=' text-end  text-gray-400 text-sm md:text-base my-1'>{msgs.date}</p>
+                                        <hr color='#F6C90E' />
                                     </div>
-                                    <hr color='#F6C90E' />
-                                </div>
-                            ))}
-</div>
-                           
+                                ))}
+                            </div>
+
 
 
                         </div>
