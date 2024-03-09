@@ -9,8 +9,9 @@ import Footer from "@/components/footer/Footer";
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-
-
+  if (session) {
+    return redirect("/home");
+  }
   return (
     <main className="h-screen w-full  px-9    border border-[#1d1d1d08] bg-bgp">
       <div className='flex justify-center items-center  text-center  h-[97%] w-full  overflow-hidden '>
@@ -33,9 +34,14 @@ export default async function Home() {
           </div>
 
         </div>
-       
+
       </div>
-      <Footer/>
+      <Footer />
     </main>
   );
+
+
 }
+
+
+
