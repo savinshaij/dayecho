@@ -57,7 +57,14 @@ const encryptText = (text, key) => {
 
 
   const handleSubmit = async (e) => {
-    
+    const trimmedContent = rowContent.trim();
+    const trimmedTitle = title.trim();
+    const trimmedMood = mood.trim();
+    if (rowContent === "" || trimmedContent ==="" || trimmedTitle ==="" || trimmedMood ==="" || title ==="" || mood ==="") {
+        return null;
+    }
+  setTitle(trimmedTitle) ;
+  setMood(trimmedMood);
 const content = encryptText(rowContent, encryptionKey);
 console.log('Encrypted:', content);
 setIsDisabled(true);
@@ -142,8 +149,8 @@ setIsInputSpinnerOn(true);
 
               <div className=' h-full  w-full md:bg-[#ffffff08] md:rounded-3xl rounded-xl md:px-5 pt-4'>
                 <div className=' mb-5 flex  gap-3'>
-                  <input className='bg-[#ffffff0f] w-full md:px-4 px-2 md:rounded-xl rounded-md text-sm md:text-lg py-3 text-white outline-none' placeholder='Titile of the day!' type="text" value={title} onChange={e => setTitle(e.target.value)} />
-                  <input className='bg-[#ffffff0f] md:w-[30%] w-full md:px-4 px-2 md:rounded-xl rounded-md py-3 text-sm md:text-lg text-white outline-none ' placeholder='How was your mood today' type="text" value={mood} onChange={e => setMood(e.target.value)} />
+                  <input className='border-solid bg-[#ffffff0f] w-full md:px-4 px-2 md:rounded-xl rounded-md text-sm md:text-lg py-3 text-white outline-none' placeholder='Titile of the day!' type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                  <input className='border-solid bg-[#ffffff0f] md:w-[30%] w-full md:px-4 px-2 md:rounded-xl rounded-md py-3 text-sm md:text-lg text-white outline-none ' placeholder='How was your mood today' type="text" value={mood} onChange={e => setMood(e.target.value)} />
                 </div>
 
                 <textarea className=' select-none outline-none w-full whitespace-pre-wrap md:rounded-2xl rounded-md  h-[60vh] bg-[#ffffff0f] md:text-lg text-sm text-white md:px-8 md:py-8 px-3 py-3 ' placeholder='your diary!' type="text" value={rowContent} onChange={e => setRowContent(e.target.value)}></textarea>

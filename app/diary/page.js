@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Datepicker from "tailwind-datepicker-react"
-import { GrFormPrevious ,GrFormNext} from "react-icons/gr";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import CryptoJS from 'crypto-js';
 const getCurrentDate = () => {
   const currentDate = new Date();
@@ -28,8 +28,8 @@ const Diary = () => {
   const currentdate = getCurrentDate();
   const { status: sessionStatus } = useSession();
   const [show, setShow] = useState(false);
-  const [infoView,setInfoView]= useState(true);
- const [diaryFound,setDiaryFound]=useState(false);
+  const [infoView, setInfoView] = useState(true);
+  const [diaryFound, setDiaryFound] = useState(false);
   const [date, setDate] = useState("");
   const [diary, setDiary] = useState([]);
   const { data: session } = useSession();
@@ -37,11 +37,11 @@ const Diary = () => {
   const email = session?.user.email;
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
   const encryptionKey = "codered";
-// Decrypt function
-const decryptText = (ciphertext, key) => {
-  const bytes = CryptoJS.AES.decrypt(ciphertext, key);
-  return bytes.toString(CryptoJS.enc.Utf8);
-};
+  // Decrypt function
+  const decryptText = (ciphertext, key) => {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, key);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  };
 
   const options = {
     title: "Select a date",
@@ -82,8 +82,8 @@ const decryptText = (ciphertext, key) => {
     }
   }
   const getData = () => {
-    
-    
+
+   
     setIsInputSpinnerOn(true);
     fetch("/api/getDiary", {
       method: "POST",
@@ -98,31 +98,33 @@ const decryptText = (ciphertext, key) => {
       res.json().then(msgs => {
         setIsInputSpinnerOn(false);
         if (msgs.Fetchedmessage.length === 0) {
+          setInfoView(false);
           setDiaryFound(false);
-    } 
-    else{
-      setDiaryFound(true);
-    }
+        }
+        else {
+          setInfoView(false);
+          setDiaryFound(true);
+        }
         setDiary(msgs.Fetchedmessage);
         console.log(diary.length);
-    
-console.log(diaryFound);
+
+        console.log(diaryFound);
       })
     })
 
   }
- const handleChange = (selectedDate) => {
-  const date = selectedDate;
-  const day = date.getDate().toString().padStart(2, '0'); // Get day and pad with leading zero if needed
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Get month (+1 because months are zero-based) and pad with leading zero if needed
-  const year = date.getFullYear(); // Get year
-  const dateString = `${day}-${month}-${year}`;
-  setDate(dateString);
-  console.log(dateString);
-	}
-	const handleClose = (state) => {
-		setShow(state)
-	}
+  const handleChange = (selectedDate) => {
+    const date = selectedDate;
+    const day = date.getDate().toString().padStart(2, '0'); // Get day and pad with leading zero if needed
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Get month (+1 because months are zero-based) and pad with leading zero if needed
+    const year = date.getFullYear(); // Get year
+    const dateString = `${day}-${month}-${year}`;
+    setDate(dateString);
+    console.log(dateString);
+  }
+  const handleClose = (state) => {
+    setShow(state)
+  }
   const checkDiary = () => {
     setIsInputSpinnerOn(true);
     fetch("/api/checkDiary", {
@@ -179,37 +181,41 @@ console.log(diaryFound);
                 <label className=' text-6xl font-medium text-textc '>My,</label><br />
                 <label className=' text-6xl font-bold text-primary my-2 '>Diary</label>
               </div>
-              <div className=' my-14 w-full flex   '>
-<Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} classNames='text-white' />
-              {/* <Datepicker  theme={newtheme}
-            onChange={ange}  /> */}
+              <p className=' md:text-xl  text-sm  font-normal my-4  text-[#ffffff39] '> Get ready for a laugh as we dive into your daily adventures. Let&apos;s turn those blank pages into memorable moments!</p>
+              <div className='  w-full flex mb-4   '>
+                <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} classNames='text-white' />
+               
 
                 <button className=' bg-white text-black text-md font-semibold py-2 px-4  active:scale-90 duration-300 rounded-xl mx-3' onClick={getData}> search</button>
 
               </div>
               <div className=' h-full w-full  bg-[#ffffff08] rounded-3xl'>
-             
-              {!diaryFound  && <div className=' h-full w-full px-14  md:pt-12 pt-6 ' >
-                <h1 className='  text-4xl text-primary font-bold text-center my-4'>Whoopsie daisy!</h1>
-                   <p className=' md:text-xl  font-medium  text-[#ffffff4d] text-center'> Seems like the diary page for that day is as blank as a snowman in summer!</p>
-                   
-                   </div>} 
-                {isInputSpinnerOn && <div className=' w-full  h-full flex justify-center pt-20'><div className="inputloader   "></div> </div>}
-                 
-                {diary.map((msgs) => (
+              {infoView &&  <div className=' h-full w-full px-7  md:pt-12 pt-10 ' >
                   
+                  <p className=' md:text-xl  text-xs font-thin  text-[#ffffff4d] text-center'> Select a date from the datepicker above and hit 'Search' to view your diary entry</p>
+
+                </div>}
+                {!diaryFound && !infoView && <div className=' h-full w-full px-14  md:pt-12 pt-6 ' >
+                  <h1 className='  text-4xl text-primary font-bold text-center my-4'>Whoopsie daisy!</h1>
+                  <p className=' md:text-xl  font-medium  text-[#ffffff4d] text-center'> Seems like the diary page for that day is as blank as a snowman in summer!</p>
+
+                </div>}
+                {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
+
+                {diary.map((msgs) => (
+
                   <div className=' mb-5 ' key={msgs.date} >
                     <div className=' mx-5'>
                       <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{msgs.date}</p>
-                      <h2 className='  md:pt-10 md:px-8 pt-4 px-2 text-primary font-bold text-lg md:text-5xl'>{msgs.title}</h2>
-                      <p className='md:px-8 md:py-5 pt-4 px-2 text-gray-300  my-1  font-semibold text-sm md:text-lg'>mood at that day was {msgs.mood}</p>
+                      <h2 className='  md:pt-10 md:px-8 pt-4 px-2 text-primary font-bold text-2xl md:text-5xl'>{msgs.title}</h2>
+                      <p className='md:px-8 md:py-5  px-2 text-gray-300    font-semibold text-medium md:text-lg'>mood at that day was {msgs.mood}</p>
                       <p className='md:px-8 px-2 text-gray-400  font-light text-xs md:text-base'>{decryptText(msgs.content, encryptionKey)}</p>
-                     
+
                     </div>
 
                   </div>
                 ))}
-                
+
               </div>
 
               <div className=' active:scale-90 duration-300  fixed  bottom-28 rounded-3xl  right-0  mx-8 h-14  w-14  md:h-24  md:w-24 bg-white cursor-pointer' onClick={checkDiary}>

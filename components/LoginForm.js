@@ -5,7 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-
+import GoogleError from "./modal/GoogleError";
 export default function LoginForm() {
   const { data: session, status: sessionStatus } = useSession();
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export default function LoginForm() {
   const [error, setError] = useState("");
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false);
   const router = useRouter();
-
+  const [modal, setModal] = useState(false);
   const handleSubmit = async (e) => {
     setIsInputSpinnerOn(true);
     e.preventDefault();
@@ -42,13 +42,15 @@ export default function LoginForm() {
       console.log(error);
     }
   };
-
+  const googleError =()=>{
+    setModal(true);
+   }
   return (
     <>
-{isInputSpinnerOn && <div className="inputloader absolute top-[50%]  left-[45%] "></div>} 
+ {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>} 
    { sessionStatus !== "authenticated" && (
     <div className='flex h-screen w-full justify-center items-center  '>
-
+<GoogleError isOpen={modal} setIsOpen={setModal} heading='Maintanace' text='Continue with "Register or login using Email" Google signup feature is not availabe at this moment' />
       <div className="flex w-full  justify-center items-center max-w-sm mx-auto overflow-hidden  rounded-lg   lg:max-w-4xl">
       
 
@@ -62,7 +64,7 @@ export default function LoginForm() {
 
             <a className="flex items-center justify-center mt-4 text-white transition-colors duration-300 transform border rounded-lg  hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
               onClick={() => {
-                signIn("google");
+                googleError();
               }}
             >
               <div className="px-4 py-2">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import GoogleError from "./modal/GoogleError";
 export default function RegisterForm() {
   const {status: sessionStatus } = useSession();
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ export default function RegisterForm() {
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false);
   const router = useRouter();
   const [isDisabled, setIsDisabled] = useState(false);
-
+  const [modal, setModal] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsDisabled(true);
@@ -72,13 +73,15 @@ setIsInputSpinnerOn(true);
       console.log("Error during registration: ", error);
     }
   };
-
+ const googleError =()=>{
+  setModal(true);
+ }
   return (
     <>
-    {isInputSpinnerOn && <div className="inputloader absolute top-[50%]  left-[50%] "></div>} 
+    {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>} 
     {sessionStatus !== "authenticated" && (
  <div className='flex h-screen w-full justify-center items-center  '>
-
+ <GoogleError isOpen={modal} setIsOpen={setModal} heading='Maintanace' text='Continue with "Register or login using Email" Google signup feature is not availabe at this moment' />
       <div className="flex w-full  justify-center items-center max-w-sm mx-auto overflow-hidden  rounded-lg   lg:max-w-4xl">
          
 
@@ -91,7 +94,8 @@ setIsInputSpinnerOn(true);
               <form onSubmit={handleSubmit}>
                   <a  className="flex items-center justify-center mt-4 text-textc hover:text-gray-800 transition-colors duration-300 transform border rounded-lg  hover:bg-gray-50  cursor-pointer" 
                   onClick={() => {
-                    signIn("google");
+                    // signIn("google");
+                    googleError();
                   }}
                   >
                       <div className="px-4 py-2">
@@ -116,11 +120,11 @@ setIsInputSpinnerOn(true);
                   </div>
                   <div className="mt-4">
                       <label className="block mb-2 text-sm font-medium text-textc " >User Name</label>
-                      <input  className="block w-full px-4 py-2 text-white bg-[#38414b] border rounded-lg    focus:border-primary focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300" type="text" value={name} onChange={e => setName(e.target.value)} />
+                      <input placeholder="User"  className="block w-full px-4 py-2 text-white bg-[#38414b] border rounded-lg    focus:border-primary focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300" type="text" value={name} onChange={e => setName(e.target.value)} />
                   </div>
                   <div className="mt-4">
                       <label className="block mb-2 text-sm font-medium text-textc " htmlFor="LoggingEmailAddress">Email Address</label>
-                      <input  className="block w-full px-4 py-2 text-white bg-[#38414b] border rounded-lg    focus:border-primary focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                      <input placeholder="example@gmail.com" className="block w-full px-4 py-2 text-white bg-[#38414b] border rounded-lg    focus:border-primary focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300" type="email" value={email} onChange={e => setEmail(e.target.value)} />
                   </div>
 
                   <div className="mt-4">

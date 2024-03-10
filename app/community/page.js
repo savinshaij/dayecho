@@ -22,6 +22,7 @@ const Profile = () => {
     const { data: session } = useSession()
     const name = session?.user.name;
     const email = session?.user.email;
+    const alphaRegex = /^[a-zA-Z]+$/;
     // let user = userName || userEmail;
 
     function getTime() {
@@ -72,7 +73,11 @@ const Profile = () => {
 
     }
     const handleSubmit = async (e) => {
-        // e.preventDefault()
+        const trimmedValue = message.trim();
+        if (message  === "" || trimmedValue ==="") {
+            return null;
+        }
+        setMessage(trimmedValue);
         setIsInputSpinnerOn(true);
         // setTime(getTime());
         // setDate(getDate());
