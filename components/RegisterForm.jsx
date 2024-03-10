@@ -142,7 +142,7 @@ setIsInputSpinnerOn(true);
             </div>
           )}
                   <div className="mt-6">
-                      <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-[#edff47] focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type='submit' disabled={isDisabled}>
+                      <button className="active:scale-90  duration-300 w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors  transform bg-primary rounded-lg hover:bg-[#edff47] focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type='submit' disabled={isDisabled}>
                           Register
                       </button>
                   </div>

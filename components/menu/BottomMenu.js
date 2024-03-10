@@ -42,7 +42,7 @@ export default function BottomMenu() {
                     <p className=' text-xs text-gray-500'>Community</p>
                 </Link>
                 <Link href='/create' className="flex items-center justify-center">
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center active:scale-75 duration-300 ">
                         <a
 
                             className="inline-flex  items-center justify-center w-10 h-10 font-medium bg-primary rounded-full "
@@ -69,7 +69,7 @@ export default function BottomMenu() {
 
 
                 <Link href="/diary" className={path === '/diary' ? 'active' : ''}>
-                    <FaBook className=' w-5 h-5  my-1 ' />
+                    <FaBook className=' w-5 h-5  my-1  ' />
                     <p className=' text-xs text-gray-500'>Diary</p>
                 </Link>
 

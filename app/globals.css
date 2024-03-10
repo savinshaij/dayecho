@@ -1,3 +1,6 @@
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +10,11 @@
 }
 html{
   background-color:#303841 ;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  
 }
+
+
 
 textarea {
   white-space: pre-wrap;
@@ -32,6 +39,28 @@ textarea:focus{
   scrollbar-color: #3A4750 ;
 }
 
+
+
+@media only screen and (max-width: 992px) {
+  *::-webkit-scrollbar-thumb {
+    background-color: #3a475000 ;
+    border-radius: 20px;
+    border: 3px solid rgba(255, 255, 255, 0);
+  }
+  
+}
+
+
+ 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  *::-webkit-scrollbar-thumb {
+    background-color: #3A4750 ;
+    border-radius: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.122);
+  }
+} 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 5px;
@@ -41,29 +70,24 @@ textarea:focus{
   background: transparent;
 }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #3A4750 ;
-  border-radius: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.122);
-}
 
 
 
 
 nav.bnav > * {
-  @apply inline-flex flex-col items-center text-white justify-center px-5  hover:text-primary  ;
+  @apply inline-flex flex-col items-center text-white justify-center px-5  hover:text-primary   ;
 }
 nav.bnav > *.active{
-  @apply inline-flex flex-col items-center text-primary justify-center px-5  hover:text-primary   ;
+  @apply inline-flex flex-col  duration-300 items-center text-primary justify-center px-5  hover:text-primary   ;
 }
 nav.tabs > * {
   @apply flex items-center px-4 py-2 mt-5 text-textc transition-colors duration-300 transform rounded-md  hover:bg-primary hover:text-gray-900  ;
 }
 nav.tabs > *.active{
-  @apply flex items-center px-4 py-2 text-gray-900 transition-colors duration-300 transform bg-primary rounded-md  hover:bg-primary hover:text-gray-900 ;
+  @apply flex items-center   px-4 py-2 text-gray-900 transition-colors duration-300 transform bg-primary rounded-md  hover:bg-primary hover:text-gray-900 ;
 }
 div.navs > *.active{
-  @apply   my-2  transition-colors duration-300 transform font-bold   text-primary  md:mx-4 md:my-0 ;
+  @apply   my-2  transition-colors  duration-300 transform font-bold   text-primary  md:mx-4 md:my-0 ;
 }
 div.navs > * {
   @apply my-2  transition-colors duration-300 transform text-textc  hover:text-primary  md:mx-4 md:my-0  ;

@@ -28,7 +28,8 @@ const Diary = () => {
   const currentdate = getCurrentDate();
   const { status: sessionStatus } = useSession();
   const [show, setShow] = useState(false);
-
+  const [infoView,setInfoView]= useState(true);
+ const [diaryFound,setDiaryFound]=useState(false);
   const [date, setDate] = useState("");
   const [diary, setDiary] = useState([]);
   const { data: session } = useSession();
@@ -48,8 +49,8 @@ const decryptText = (ciphertext, key) => {
     todayBtn: false,
     clearBtn: true,
     clearBtnText: "Clear",
-    maxDate: new Date("2030-01-01"),
-    minDate: new Date("1950-01-01"),
+    maxDate: new Date("2070-01-01"),
+    minDate: new Date("2020-01-01"),
     theme: {
       background: "bg-bgs ",
       todayBtn: "bg-transparent",
@@ -67,7 +68,7 @@ const decryptText = (ciphertext, key) => {
       next: () => <span><GrFormNext /></span>,
     },
     datepickerClassNames: "top-12",
-    defaultDate: new Date("2022-01-01"),
+    defaultDate: new Date("2024-03-01"),
     language: "en",
     disabledDates: [],
     weekDays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
@@ -82,6 +83,7 @@ const decryptText = (ciphertext, key) => {
   }
   const getData = () => {
     
+    
     setIsInputSpinnerOn(true);
     fetch("/api/getDiary", {
       method: "POST",
@@ -95,7 +97,16 @@ const decryptText = (ciphertext, key) => {
     }).then(res => {
       res.json().then(msgs => {
         setIsInputSpinnerOn(false);
+        if (msgs.Fetchedmessage.length === 0) {
+          setDiaryFound(false);
+    } 
+    else{
+      setDiaryFound(true);
+    }
         setDiary(msgs.Fetchedmessage);
+        console.log(diary.length);
+    
+console.log(diaryFound);
       })
     })
 
@@ -153,7 +164,7 @@ const decryptText = (ciphertext, key) => {
     return (
       <>
 
-        <div className='flex  justify-between h-screen w-full  overflow-hidden '>
+        <div className='flex  justify-between h-screen w-full  overflow-hidden  scr '>
           <SpringModal isOpen={modal} setIsOpen={setModal} />
           <div className='   flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full'>
             <div className='hidden  md:grid w-[50%] h-screen     '>
@@ -173,26 +184,35 @@ const decryptText = (ciphertext, key) => {
               {/* <Datepicker  theme={newtheme}
             onChange={ange}  /> */}
 
-                <button className=' bg-white text-black text-md font-semibold py-2 px-4  rounded-xl mx-3' onClick={getData}> search</button>
+                <button className=' bg-white text-black text-md font-semibold py-2 px-4  active:scale-90 duration-300 rounded-xl mx-3' onClick={getData}> search</button>
 
               </div>
               <div className=' h-full w-full  bg-[#ffffff08] rounded-3xl'>
+             
+              {!diaryFound  && <div className=' h-full w-full px-14  md:pt-12 pt-6 ' >
+                <h1 className='  text-4xl text-primary font-bold text-center my-4'>Whoopsie daisy!</h1>
+                   <p className=' md:text-xl  font-medium  text-[#ffffff4d] text-center'> Seems like the diary page for that day is as blank as a snowman in summer!</p>
+                   
+                   </div>} 
                 {isInputSpinnerOn && <div className=' w-full  h-full flex justify-center pt-20'><div className="inputloader   "></div> </div>}
+                 
                 {diary.map((msgs) => (
+                  
                   <div className=' mb-5 ' key={msgs.date} >
                     <div className=' mx-5'>
                       <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{msgs.date}</p>
                       <h2 className='  md:pt-10 md:px-8 pt-4 px-2 text-primary font-bold text-lg md:text-5xl'>{msgs.title}</h2>
                       <p className='md:px-8 md:py-5 pt-4 px-2 text-gray-300  my-1  font-semibold text-sm md:text-lg'>mood at that day was {msgs.mood}</p>
                       <p className='md:px-8 px-2 text-gray-400  font-light text-xs md:text-base'>{decryptText(msgs.content, encryptionKey)}</p>
-
+                     
                     </div>
 
                   </div>
                 ))}
+                
               </div>
 
-              <div className=' fixed  bottom-28 rounded-3xl  right-0  mx-8 h-14  w-14  md:h-24  md:w-24 bg-white cursor-pointer' onClick={checkDiary}>
+              <div className=' active:scale-90 duration-300  fixed  bottom-28 rounded-3xl  right-0  mx-8 h-14  w-14  md:h-24  md:w-24 bg-white cursor-pointer' onClick={checkDiary}>
                 <div className=' flex justify-center items-center h-full w-full text-gray-700 text-4xl font-bold ' >
                   +
                 </div>

@@ -115,7 +115,7 @@ export default function LoginForm() {
               </div>
             )}
             <div className="mt-6">
-              <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:violet-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type='submit'>
+              <button className=" active:scale-90  w-full px-6 py-3 text-sm font-medium tracking-wide text-black capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:violet-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" type='submit'>
                 Login
               </button>
             </div>

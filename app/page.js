@@ -24,10 +24,10 @@ export default async function Home() {
 
           <div className="flex justify-center gap-4 w-auto my-2">
             <Link href={"/login"}>
-              <button className="  rounded-xl  bg-primary text-gray-900 font-medium md:py-2 md:px-9  py-1 px-7 transition-all hover:bg-[#dbde48] active:scale-95" >
+              <button className=" active:scale-90  duration-300 rounded-xl  bg-primary text-gray-900 font-medium md:py-2 md:px-9  py-1 px-7 transition-all hover:bg-[#dbde48] " >
                 Login
               </button></Link>
-            <Link href={"/register"}>   <button className="  rounded-xl border  text-textc  font-medium md:py-2 md:px-9  px-7  py-1 transition-all hover:bg-[#3f4853] active:scale-95" >
+            <Link href={"/register"}>   <button className="  rounded-xl border  text-textc  font-medium md:py-2 md:px-9  px-7  py-1 transition-all hover:bg-[#3f4853] active:scale-90" >
               Register
             </button></Link>
 

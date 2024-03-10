@@ -38,7 +38,7 @@ export default function Page() {
     }
 
     if (sessionStatus === "loading") {
-        return <div class="inputloader "></div>;
+        return <div className=' h-screen w-full flex justify-center items-center'><div class="inputloader "></div></div> ;
     }
     if (sessionStatus === "unauthenticated") {
         redirect("/")
@@ -55,13 +55,13 @@ export default function Page() {
                 <div className='md:hidden  grid'>
                     <BottomMenu />
                 </div>
-                <div className='      w-full  my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
+                <div className='      w-full my-16 md:px-20 flex justify-center items-center  rounded-2xl  '>
                     <div className=" w-full h-full  md:px-32 px-5   md:pt-16 md:bg-[#323a43] rounded-3xl overflow-y-scroll  ">
                         <div className=' my-5'>
-                            <h1 className=' text-4xl md:text-5xl font-bold text-textc  my-4'>Hey, {userName}</h1>
+                            <h1 className='  text-4xl md:text-5xl font-bold text-textc  my-4'>Hey, {userName}</h1>
                         </div>
                         <div className=' my-5 py-3 px-3 text-center  bg-primary rounded-2xl md:py-7 md:my-12'>
-                            <h2 className=' text-gray-900 font-bold text-lg text-center md:text-2xl '> Today&apos;s Quote</h2>
+                            <h2 className=' text-gray-900  font-bold text-lg text-center md:text-2xl '> Today&apos;s Quote</h2>
                             <p className=' text-gray-800 mt-3  font-medium text-sm md:text-lg '>{quotes}</p>
                             <div className=' w-full px-14'>
                                 <p className=' text-gray-800  mt-3  font-medium text-xs md:text-sm  text-end'>-{Author}</p>
@@ -70,7 +70,7 @@ export default function Page() {
                         </div>
                         <div className=' my-5 '>
 
-                            <h2 className=' text-textc font-medium text-lg text-center md:text-2xl md:font-medium my-9 '>For you</h2>
+                            <p className=' text-[#ffffff6d]  font-normal text-base text-center md:text-2xl  my-9 '>Posts</p>
 
                             <div className='w-full h-full  flex flex-col-reverse'>
                                 {isInputSpinnerOn && <div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div>}
@@ -85,7 +85,7 @@ export default function Page() {
                                             </div>
                                             <p className=' text-end  text-gray-400 font-normal text-xs md:text-base my-1'>{msgs.date}</p>
                                         </div>
-                                        <hr color='#F6C90E' />
+                                        <hr className='h-px  my-1 bg-[#ffffff21] border-0 ' />
                                     </div>
                                 ))}
                             </div>

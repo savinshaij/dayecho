@@ -14,7 +14,7 @@ const DropDown = () => {
             <motion.div animate={open ? "open" : "closed"} className="relative">
                 <button
                     onClick={() => setOpen((pv) => !pv)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-md text-indigo-50 bg-bgp hover:bg-bgs transition-colors"
+                    className="flex items-center gap-2 active:scale-90  duration-300 px-3 py-2 h-full rounded-md text-indigo-50  hover:bg-bgs transition-colors"
                 >
                     
                    {open ? <FaX/>:<FaBarsStaggered />}

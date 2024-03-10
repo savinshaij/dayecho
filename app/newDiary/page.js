@@ -148,8 +148,8 @@ setIsInputSpinnerOn(true);
 
                 <textarea className=' select-none outline-none w-full whitespace-pre-wrap md:rounded-2xl rounded-md  h-[60vh] bg-[#ffffff0f] md:text-lg text-sm text-white md:px-8 md:py-8 px-3 py-3 ' placeholder='your diary!' type="text" value={rowContent} onChange={e => setRowContent(e.target.value)}></textarea>
                 <div className='w-full flex gap-2'>
-                  <button className=' bg-white text-black md:text-lg text-base font-semibold  md:py-3 py-2 w-full md:rounded-xl rounded-md  my-5 ' onClick={handleSubmit} disabled={isDisabled}>save</button>
-                  <button className='  border-2 border-[#ffffff39] text-white md:text-lg text-base  font-medium md:py-3 w-[30%] md:rounded-xl rounded-md  my-5 ' onClick={goback}>cancel</button>
+                  <button className=' active:scale-90 transition-all duration-300 bg-white text-black md:text-lg text-base font-semibold  md:py-3 py-2 w-full md:rounded-xl rounded-md  my-5 ' onClick={handleSubmit} disabled={isDisabled}>save</button>
+                  <button className='  active:scale-90 transition-all duration-300 border-2 border-[#ffffff39] text-white md:text-lg text-base  font-medium md:py-3 w-[30%] md:rounded-xl rounded-md  my-5 ' onClick={goback}>cancel</button>
                 </div>
 
               </div>
