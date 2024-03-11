@@ -28,7 +28,7 @@ const Profile = () => {
     }
     else {
         return (
-            <>
+      
 
                 <div className='flex justify-between h-screen w-full   '>
                     
@@ -93,7 +93,6 @@ const Profile = () => {
 
                 </div>
 
-            </>
         );
     }
 };

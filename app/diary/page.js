@@ -166,7 +166,7 @@ const Diary = () => {
     return (
       <>
 
-        <div className='flex  justify-between h-screen w-full  overflow-hidden  scr '>
+        <div className='flex  justify-between h-screen w-full     '>
           <SpringModal isOpen={modal} setIsOpen={setModal} />
           <div className='   flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full'>
             <div className='hidden  md:grid w-[50%] h-screen     '>
