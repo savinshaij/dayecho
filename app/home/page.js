@@ -56,7 +56,7 @@ export default function Page() {
                     <BottomMenu />
                 </div>
                 <div className='      w-full my-16 md:px-20 flex justify-center items-center  rounded-2xl  '>
-                    <div className=" w-full h-full  md:px-32 px-5   md:pt-16 md:bg-[#323a43] rounded-3xl overflow-y-scroll  ">
+                    <div className=" w-full h-full  md:px-32 px-5   md:pt-16 md:bg-[#323a43] rounded-3xl scroll-smooth overflow-y-scroll  ">
                         <div className=' my-5'>
                             <h1 className='  text-4xl md:text-5xl font-bold text-textc  my-4'>Hey, {userName}</h1>
                         </div>
