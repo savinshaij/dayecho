@@ -40,7 +40,7 @@ const Profile = () => {
                             <BottomMenu/>
                         </div>
 
-                        <div className='      md:my-20  flex justify-center items-center  rounded-2xl overflow-y-scroll '>
+                        <div className='      md:my-20  flex justify-center items-center  rounded-2xl   '>
                             <div className="flex items-center justify-center  px-10  md:py-20   md:bg-[#363f48] rounded-3xl ">
                                 <div className="  w-full max-w-[550px] ">
                                     <form onSubmit={handleProfileInfoUpdate}>
