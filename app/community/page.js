@@ -127,13 +127,13 @@ const Profile = () => {
                         <div className='hidden  md:grid w-[50%] h-screen     '>
                             <Menu />
                         </div>
-                        <div className=' fixed md:hidden mt-16  w-full bg-bgp'>
+                        <div className=' fixed md:hidden mt-16  w-full '>
 
                             <div className='flex w-full h-full justify-between items-center px-5'>
                                 <Link href='/home'>
                                     <div className=' flex justify-center items-center h-8 w-8
-                                      bg-bgs rounded-3xl my-2'>
-                                        <IoArrowBackSharp className='h-5 w-5 text-textc ' />
+                                      bg-white rounded-3xl my-2'>
+                                        <IoArrowBackSharp className='h-5 w-5 text-black ' />
                                     </div>
                                 </Link>
                                 <button className=' text-xs rounded-lg px-2 font-light py-2 active:scale-75 duration-300 bg-[#ffffff1c] text-gray-300' onClick={fetchmessages}>view recent messages</button>
