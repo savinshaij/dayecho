@@ -11,6 +11,7 @@
 html{
   background-color:#303841 ;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  overflow: hidden;
   
 }
 
@@ -37,6 +38,11 @@ textarea:focus{
   scroll-behavior: smooth;
   scrollbar-width:5px;
   scrollbar-color: #3A4750 ;
+  
+  overscroll-behavior: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 

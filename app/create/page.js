@@ -10,7 +10,7 @@ import BottomMenu from '@/components/menu/BottomMenu';
 
 
 export default function Page() {
-    
+  const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
     const { data: session, status: sessionStatus } = useSession();
     const  email =session?.user?.email;
     const  name = session?.user?.name;
@@ -36,6 +36,7 @@ export default function Page() {
     }
 
     const handleSubmit = async (e) => {
+      setIsInputSpinnerOn(true)
         e.preventDefault();
         const trimmedValue = message.trim();
         if (message  === "" || trimmedValue ==="" || subject ==="" || tag ==="") {
@@ -63,6 +64,7 @@ export default function Page() {
                 setMessage('');
                 setSubject('');
                 setTag('');
+               setIsInputSpinnerOn(false);
                 setModal(true);
                 
                 
@@ -78,6 +80,7 @@ export default function Page() {
    
     return (
         <div className='flex justify-between h-screen w-full  '>
+          {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
             <SpringModal isOpen={modal} setIsOpen={setModal} />
             <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
                 <div className='hidden  md:grid w-[50%] h-screen     '>

@@ -196,11 +196,11 @@ const Diary = () => {
 
                 </div>}
                 {!diaryFound && !infoView && <div className=' h-full w-full px-14  md:pt-12 pt-6 ' >
-                  <h1 className='  text-4xl text-primary font-bold text-center my-4'>Whoopsie daisy!</h1>
+                  <h1 className='  text-4xl text-primary font-bold text-center my-4'>No data found😥</h1>
                   <p className=' md:text-xl  font-medium  text-[#ffffff4d] text-center'> Seems like the diary page for that day is as blank as a snowman in summer!</p>
-
+                
                 </div>}
-                {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
+{isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
 
                 {diary.map((msgs) => (
 
