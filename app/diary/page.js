@@ -83,7 +83,7 @@ const Diary = () => {
   }
   const getData = () => {
 
-   
+
     setIsInputSpinnerOn(true);
     fetch("/api/getDiary", {
       method: "POST",
@@ -176,7 +176,12 @@ const Diary = () => {
               <BottomMenu />
             </div>
 
-            <div className='md:my-20 mb-20 md:mb-0 md:px-24 px-5 w-full rounded-2xl overflow-y-scroll '>
+            <motion.div className='md:my-20 mb-20 md:mb-0 md:px-24 px-5 w-full rounded-2xl overflow-y-scroll '
+             initial={{ opacity: 0, }}
+             animate={{ opacity: 1, }}
+             exit={{ opacity: 0,  }}
+             transition={{ duration: 1, ease: 'easeInOut' }}
+            >
               <div className='   w-full  pt-20 md:pt-0  '>
                 <label className=' text-6xl font-medium text-textc '>My,</label><br />
                 <label className=' text-6xl font-bold text-primary my-2 '>Diary</label>
@@ -184,23 +189,23 @@ const Diary = () => {
               <p className=' md:text-xl  text-sm  font-normal my-4  text-[#ffffff3f] '> Get ready for a laugh as we dive into your daily adventures. Let&apos;s turn those blank pages into memorable moments!</p>
               <div className='  w-full flex mb-4   '>
                 <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} classNames='text-white' />
-               
+
 
                 <button className=' bg-white text-black text-md font-semibold py-2 px-4  active:scale-90 duration-300 rounded-xl mx-3' onClick={getData}> search</button>
 
               </div>
               <div className=' h-full w-full  bg-[#ffffff08] rounded-3xl'>
-              {infoView &&  <div className=' h-full w-full px-7  md:pt-12 pt-10 ' >
-                  
+                {infoView && <div className=' h-full w-full px-7  md:pt-12 pt-10 ' >
+
                   <p className=' md:text-xl  text-sm font-thin  text-[#ffffff4d] text-center'> Select a date from the datepicker above and hit &apos;Search&apos; to view your diary entry</p>
 
                 </div>}
                 {!diaryFound && !infoView && <div className=' h-full w-full px-14  md:pt-12 pt-6 ' >
                   <h1 className='  text-4xl text-primary font-bold text-center my-4'>No data found😥</h1>
                   <p className=' md:text-xl  font-medium  text-[#ffffff4d] text-center'> Seems like the diary page for that day is as blank as a snowman in summer!</p>
-                
+
                 </div>}
-{isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
+                {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
 
                 {diary.map((msgs) => (
 
@@ -218,15 +223,20 @@ const Diary = () => {
 
               </div>
 
-              <div className=' active:scale-90 duration-300  fixed  bottom-28 rounded-3xl  right-0  mx-8 h-14  w-14  md:h-24  md:w-24 bg-white cursor-pointer' onClick={checkDiary}>
+              <motion.div className=' active:scale-90 duration-300  fixed  bottom-28 rounded-3xl  right-0  mx-8 h-14  w-14  md:h-24  md:w-24 bg-white cursor-pointer' onClick={checkDiary}
+                 initial={{ opacity: 0,scale:0.4,y:30 }}
+                 animate={{ opacity: 1,scale:1 ,y:0}}
+                 exit={{ opacity: 0, scale: 0 ,y:0}}
+                 transition={{ duration: 0.5}}
+              >
                 <div className=' flex justify-center items-center h-full w-full text-gray-700 text-4xl font-bold ' >
                   +
                 </div>
-              </div>
+              </motion.div>
 
 
 
-            </div>
+            </motion.div>
           </div>
 
         </div>

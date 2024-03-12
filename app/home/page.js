@@ -68,9 +68,14 @@ export default function Page() {
                 </div>
                 <div className='      w-full my-16 md:px-20 flex justify-center items-center  rounded-2xl  '>
                     <div className=" w-full h-full  md:px-32 px-5   md:pt-16 md:bg-[#323a43] rounded-3xl scroll-smooth overflow-y-scroll  ">
-                        <div className=' my-5'>
+                        < motion.div className=' my-5'
+                        initial={{ opacity: 0, }}
+                        animate={{ opacity: 1, }}
+                        exit={{ opacity: 0,  }}
+                        transition={{ duration: 0.5, ease: 'easeInOut' }}
+                        >
                             <h1 className='  text-4xl md:text-5xl font-bold text-textc  my-4'>Hey, {userName}</h1>
-                        </div>
+                        </motion.div>
                         {quote && (
                             <motion.div
                                 initial={{ opacity: 0, }}
@@ -95,7 +100,12 @@ export default function Page() {
                             <div className='w-full h-full  flex flex-col-reverse'>
                                 {isInputSpinnerOn && <div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div>}
                                 {allPost.map((msgs) => (
-                                    <div className=' mb-5 ' key={msgs.subject} >
+                                    <motion.div className=' mb-5 ' key={msgs.subject}
+                                    initial={{ opacity: 0, }}
+                                    animate={{ opacity: 1, }}
+                                    exit={{ opacity: 0,  }}
+                                    transition={{ duration: 1, ease: 'easeInOut' }}
+                                    >
                                         <div className=' mx-5'>
                                             <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
                                             <p className=' text-gray-300  my-1  font-medium text-base md:text-lg'>{msgs.subject}:</p>
@@ -106,7 +116,7 @@ export default function Page() {
                                             <p className=' text-end  text-gray-400 font-normal text-xs md:text-base my-1'>{msgs.date}</p>
                                         </div>
                                         <hr className='h-px  my-1 bg-[#ffffff21] border-0 ' />
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
 
