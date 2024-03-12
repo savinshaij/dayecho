@@ -77,6 +77,8 @@ export default function Page() {
     }
   };
 
+ 
+ 
 
   return (
     <div className='flex justify-between h-screen w-full   '>
@@ -90,18 +92,18 @@ export default function Page() {
           <BottomMenu />
         </div>
         <div className='      w-full   my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
-          <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl overflow-y-scroll  ">
+          <div  className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl overflow-y-scroll  ">
             <div className=' flex justify-center items-center w-full h-full   '>
               <form onSubmit={handleSubmit}  >
-              
-              {/* <div className='  h-60  ' /> */}
-                <input placeholder='Subject...' className=' md:mt-0 mt-60  pl-6  border-solid outline-none md:text-base text-sm text-white w-full bg-bgp my-3 py-3 rounded-xl ' type="text" value={subject} onChange={e => setSubject(e.target.value)} />
-                <textarea placeholder='content...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 md:h-72   h-56  py-5 rounded-xl overflow-y-scroll  ' type="text" value={message} onChange={e => setMessage(e.target.value)} />
+
+                 <div className=' md:hidden w-full   h-60  flex justify-center items-center  pt-36  ' ><p className=' h-full w-full  text-base  font-medium text-[#ffffff62]  text-center'>Writing is a journey of self-discovery. Embrace it, and let your creativity flow</p> </div>
+                <input placeholder='Subject...' className=' md:mt-24   pl-6  border-solid outline-none md:text-base text-sm text-white w-full bg-bgp my-3 py-3 rounded-xl ' type="text" value={subject} onChange={e => setSubject(e.target.value)} />
+                <textarea placeholder='content...' className=' resize-none   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 md:h-72   h-56  py-5 rounded-xl overflow-y-scroll  ' type="text" value={message} onChange={e => setMessage(e.target.value)} />
                 <input placeholder='#food #tech etc...' className=' border-solid  pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3  py-3 rounded-xl ' type="text" value={tag} onChange={e => setTag(e.target.value)} />
-                <div className=' w-full flex justify-end  mb-24'>
+                <div className=' w-full flex justify-end  mb-24 items-center'>
                   <button className='transition-all active:scale-90 w-full  py-2 px-4 my-3  rounded-lg bg-primary text-gray-700 font-medium  text-sm ' type='submit'>post</button>
                 </div>
-               
+
 
 
               </form>

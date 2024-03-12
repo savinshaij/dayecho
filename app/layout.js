@@ -1,3 +1,4 @@
+" use client";
 import NavBar from "@/components/NavBar";
 import { AuthProvider } from "./Providers";
 import "./globals.css";
@@ -16,9 +17,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+     
         <AuthProvider>
           <MnavBar/>
           <NavBar/>
+        
           {children}
           
           </AuthProvider>

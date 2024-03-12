@@ -4,7 +4,6 @@ import { IoSend } from "react-icons/io5";
 import { FaBook, FaHome, FaUserFriends, FaRegQuestionCircle, FaRegUserCircle } from "react-icons/fa";
 import { MdGroups } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi2";
-
 import React from "react"
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -20,7 +19,9 @@ export default function BottomMenu() {
 
     return (
 
-        <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2   rounded-full bottom-1 left-1/2 bg-bgs border-gray-600">
+        <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2   rounded-full bottom-1 left-1/2 bg-bgs border-gray-600"
+        
+        >
             <nav className="grid h-full max-w-lg grid-cols-5 mx-auto bnav">
                 <Link href="/home" className={path === '/home' ? 'active' : ''}>
 

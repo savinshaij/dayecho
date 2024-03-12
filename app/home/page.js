@@ -1,17 +1,28 @@
 "use client";
 import Menu from '@/components/menu/Menu '
-import Quote from 'inspirational-quotes'
 import React, { useState, useEffect } from 'react';
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
+import { motion } from 'framer-motion';
+
+
+const getQuoteOfDay = async () => {
+    const dayOfYear = new Date().getDay();
+    const response = await fetch(`/quotes.json`);
+
+    const data = await response.json();
+    const index = dayOfYear % data.length; // Modulo operation to ensure it cycles through quotes
+    return data[index];
+};
+
+
 export default function Page() {
     const [allPost, setAllPost] = useState([]);
     const { data: session, status: sessionStatus } = useSession();
     const userName = session?.user.name;
-    const { text: quotes, author: Author } = Quote.getQuote();
     const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
-
+    const [quote, setQuote] = useState(null);
     useEffect(() => {
         setIsInputSpinnerOn(true);
         fetch('/api/getPost').then(res => {
@@ -24,21 +35,17 @@ export default function Page() {
             })
         })
 
+
+        const fetchQuote = async () => {
+            const quoteData = await getQuoteOfDay();
+            setQuote(quoteData);
+        };
+        fetchQuote();
+
     }, [])
 
-    const getData = () => {
-        fetch('/api/getPost').then(res => {
-            res.json().then(msgs => {
-                setAllPost(msgs.Fetchedmessage);
-
-                console.log(msgs.Fetchedmessage)
-
-            })
-        })
-    }
-
     if (sessionStatus === "loading") {
-        return <div className=' h-screen w-full flex justify-center items-center'><div class="inputloader "></div></div> ;
+        return <div className=' h-screen w-full flex justify-center items-center'><div class="inputloader "></div></div>;
     }
     if (sessionStatus === "unauthenticated") {
         redirect("/")
@@ -49,10 +56,14 @@ export default function Page() {
     return (
         <div className='flex justify-between h-screen w-full  '>
             <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
-                <div className='hidden  md:grid w-[50%] h-screen     '>
+                <div className='hidden  md:grid w-[50%] h-screen     '
+                
+                >
                     <Menu />
                 </div>
-                <div className='md:hidden  grid'>
+                <div className='md:hidden  grid'
+               
+                >
                     <BottomMenu />
                 </div>
                 <div className='      w-full my-16 md:px-20 flex justify-center items-center  rounded-2xl  '>
@@ -60,14 +71,23 @@ export default function Page() {
                         <div className=' my-5'>
                             <h1 className='  text-4xl md:text-5xl font-bold text-textc  my-4'>Hey, {userName}</h1>
                         </div>
-                        <div className=' my-5 py-3 px-3 text-center  bg-primary rounded-2xl md:py-7 md:my-12'>
-                            <h2 className=' text-gray-900  font-bold text-lg text-center md:text-2xl '> Today&apos;s Quote</h2>
-                            <p className=' text-gray-800 mt-3  font-medium text-sm md:text-lg '>{quotes}</p>
-                            <div className=' w-full px-14'>
-                                <p className=' text-gray-800  mt-3  font-medium text-xs md:text-sm  text-end'>-{Author}</p>
-                            </div>
+                        {quote && (
+                            <motion.div
+                                initial={{ opacity: 0, }}
+                                animate={{ opacity: 1, }}
+                                exit={{ opacity: 0,  }}
+                                transition={{ duration: 1, ease: 'easeInOut' }}
+                                className=' my-5 py-3 px-3 text-center  bg-primary rounded-2xl md:py-7 md:my-12'
+                            >
 
-                        </div>
+                                <h2 className=' text-gray-900  font-bold text-lg text-center md:text-2xl '>Quote of the Day</h2>
+                                <p className=' text-gray-800 mt-3  font-medium text-sm md:text-lg '>{quote.quote}</p>
+                                <div className=' w-full px-14'>
+                                    <p className=' text-gray-800  mt-3  font-medium text-xs md:text-sm  text-end'>-{quote.author}</p>
+                                </div>
+
+                            </motion.div>
+                        )}
                         <div className=' my-5 '>
 
                             <p className=' text-[#ffffff6d]  font-normal text-base text-center md:text-2xl  my-9 '>Posts</p>

@@ -181,7 +181,7 @@ const Diary = () => {
                 <label className=' text-6xl font-medium text-textc '>My,</label><br />
                 <label className=' text-6xl font-bold text-primary my-2 '>Diary</label>
               </div>
-              <p className=' md:text-xl  text-sm  font-normal my-4  text-[#ffffff39] '> Get ready for a laugh as we dive into your daily adventures. Let&apos;s turn those blank pages into memorable moments!</p>
+              <p className=' md:text-xl  text-sm  font-normal my-4  text-[#ffffff3f] '> Get ready for a laugh as we dive into your daily adventures. Let&apos;s turn those blank pages into memorable moments!</p>
               <div className='  w-full flex mb-4   '>
                 <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} classNames='text-white' />
                
@@ -192,7 +192,7 @@ const Diary = () => {
               <div className=' h-full w-full  bg-[#ffffff08] rounded-3xl'>
               {infoView &&  <div className=' h-full w-full px-7  md:pt-12 pt-10 ' >
                   
-                  <p className=' md:text-xl  text-xs font-thin  text-[#ffffff4d] text-center'> Select a date from the datepicker above and hit &apos;Search&apos; to view your diary entry</p>
+                  <p className=' md:text-xl  text-sm font-thin  text-[#ffffff4d] text-center'> Select a date from the datepicker above and hit &apos;Search&apos; to view your diary entry</p>
 
                 </div>}
                 {!diaryFound && !infoView && <div className=' h-full w-full px-14  md:pt-12 pt-6 ' >

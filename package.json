@@ -18,7 +18,6 @@
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.2",
     "framer-motion": "^11.0.2",
-    "inspirational-quotes": "^2.0.1",
     "mongoose": "^7.4.1",
     "next": "13.4.12",
     "next-auth": "^4.22.3",
