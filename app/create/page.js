@@ -79,7 +79,7 @@ export default function Page() {
 
    
     return (
-        <div className='flex justify-between h-screen w-full   '>
+        <div className='flex justify-between h-screen w-full  overflow-scroll  '>
           {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
             <SpringModal isOpen={modal} setIsOpen={setModal} />
             <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
@@ -89,9 +89,9 @@ export default function Page() {
                 <div className='md:hidden  grid'>
                     <BottomMenu />
                 </div>
-                <div className='      w-full   my-20 md:px-20 flex justify-center items-center  rounded-2xl overflow-y-scroll '>
-                    <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl overflow-y-scroll  ">
-                        <div className=' flex justify-center items-center w-full h-full overflow-y-scroll  '>
+                <div className='      w-full   my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
+                    <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl  ">
+                        <div className=' flex justify-center items-center w-full h-full  '>
                             <form  onSubmit={handleSubmit} className=' overflow-y-scroll' >
                             <input placeholder='Subject...' className='   pl-6  border-solid outline-none md:text-base text-sm text-white w-full bg-bgp my-3 py-3 rounded-xl ' type="text"  value={subject} onChange={e => setSubject(e.target.value)}/>
                             <textarea placeholder='content...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 md:h-72   h-56  py-5 rounded-xl overflow-y-scroll  ' type="text"  value={message} onChange={e => setMessage(e.target.value)} />
