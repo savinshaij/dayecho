@@ -92,16 +92,17 @@ export default function Page() {
         <div className='      w-full   my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
           <div className=" w-full h-full  px-10    bg-[#323a43] rounded-3xl  ">
             <div className=' flex justify-center items-center w-full h-full  overflow-scroll '>
-              <form onSubmit={handleSubmit} className=' overflow-y-scroll py-9' >
-              <div className=' h-36 my-10 bg-slate-100 ' />
+              <form onSubmit={handleSubmit} className=' overflow-y-scroll my-9' >
+              <div className=' h-36  bg-slate-100 ' />
+              <div className=' h-36 bg-slate-100 ' />
                 <input placeholder='Subject...' className='   pl-6  border-solid outline-none md:text-base text-sm text-white w-full bg-bgp my-3 py-3 rounded-xl ' type="text" value={subject} onChange={e => setSubject(e.target.value)} />
                 <textarea placeholder='content...' className='   pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3 md:h-72   h-56  py-5 rounded-xl overflow-y-scroll  ' type="text" value={message} onChange={e => setMessage(e.target.value)} />
                 <input placeholder='#food #tech etc...' className=' border-solid  pl-6  outline-none md:text-base text-sm text-white w-full bg-bgp my-3  py-3 rounded-xl ' type="text" value={tag} onChange={e => setTag(e.target.value)} />
-                <div className=' w-full flex justify-end'>
+                <div className=' w-full flex justify-end mb-24'>
                   <button className='transition-all active:scale-90 w-full  py-2 px-4 my-3  rounded-lg bg-primary text-gray-700 font-medium  text-sm ' type='submit'>post</button>
                 </div>
                
-<div className=' h-36 bg-slate-100 ' />
+                <div className='  bg-slate-100 ' />
 
               </form>
 
