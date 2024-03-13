@@ -109,7 +109,10 @@ export default function Page() {
                                         <div className=' mx-5'>
                                             <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
                                             <p className=' text-gray-300  my-1  font-medium text-base md:text-lg'>{msgs.subject}:</p>
-                                            <p className=' text-gray-400 font-normal text-sm md:text-base'>{msgs.message}</p>
+                                            
+                                            <p className=' text-gray-400 font-normal whitespace-pre-wrap text-sm md:text-base'>{msgs.message}</p>
+                                            
+                                            
                                             <div>
                                                 <p className='pt-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p>
                                             </div>

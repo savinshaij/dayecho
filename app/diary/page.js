@@ -177,10 +177,10 @@ const Diary = () => {
             </div>
 
             <motion.div className='md:my-20 mb-20 md:mb-0 md:px-24 px-5 w-full rounded-2xl overflow-y-scroll '
-             initial={{ opacity: 0, }}
-             animate={{ opacity: 1, }}
-             exit={{ opacity: 0,  }}
-             transition={{ duration: 1, ease: 'easeInOut' }}
+              initial={{ opacity: 0, }}
+              animate={{ opacity: 1, }}
+              exit={{ opacity: 0, }}
+              transition={{ duration: 1, ease: 'easeInOut' }}
             >
               <div className='   w-full  pt-20 md:pt-0  '>
                 <label className=' text-6xl font-medium text-textc '>My,</label><br />
@@ -214,7 +214,7 @@ const Diary = () => {
                       <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{msgs.date}</p>
                       <h2 className='  md:pt-10 md:px-8 pt-4 px-2 text-primary font-bold text-2xl md:text-5xl'>{msgs.title}</h2>
                       <p className='md:px-8 md:py-5  px-2 text-gray-300    font-semibold text-medium md:text-lg'>mood at that day was {msgs.mood}</p>
-                      <p className='md:px-8 px-2 text-gray-400  font-light text-xs md:text-base'>{decryptText(msgs.content, encryptionKey)}</p>
+                      <p className='md:px-8 px-2 text-gray-400   text-sm md:text-base whitespace-pre-wrap'>{decryptText(msgs.content, encryptionKey)}</p>
 
                     </div>
 
@@ -224,10 +224,10 @@ const Diary = () => {
               </div>
 
               <motion.div className=' active:scale-90 duration-300  fixed  bottom-28 rounded-3xl  right-0  mx-8 h-14  w-14  md:h-24  md:w-24 bg-white cursor-pointer' onClick={checkDiary}
-                 initial={{ opacity: 0,scale:0.4,y:30 }}
-                 animate={{ opacity: 1,scale:1 ,y:0}}
-                 exit={{ opacity: 0, scale: 0 ,y:0}}
-                 transition={{ duration: 0.5}}
+                initial={{ opacity: 0, scale: 0.4, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0, y: 0 }}
+                transition={{ duration: 0.5 }}
               >
                 <div className=' flex justify-center items-center h-full w-full text-gray-700 text-4xl font-bold ' >
                   +
