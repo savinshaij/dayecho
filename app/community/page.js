@@ -8,11 +8,20 @@ import BottomMenu from '@/components/menu/BottomMenu';
 import { IoArrowBackSharp } from "react-icons/io5";
 import Link from 'next/link';
 
+
+function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const showDate = date + ':' + month + ":" + year;
+    return (showDate);
+}
 // Create your Next.js component
 const Profile = () => {
   
     const [time, setTime] = useState(".");
-    const [date, setDate] = useState(".");
+    const [date, setDate] = useState(getDate());
     const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
     const [isMsgFetchLoadingOn, setIsMsgFetchLoadingOn] = useState(false)
     const bottomRef = useRef(null);
@@ -22,7 +31,7 @@ const Profile = () => {
     const { data: session } = useSession()
     const name = session?.user.name;
     const email = session?.user.email;
-    const alphaRegex = /^[a-zA-Z]+$/;
+    
     // let user = userName || userEmail;
 
     function getTime() {
@@ -39,14 +48,7 @@ const Profile = () => {
     }
 
 
-    function getDate() {
-        const today = new Date();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        const date = today.getDate();
-        const showDate = date + ':' + month + ":" + year;
-        return (showDate);
-    }
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -166,7 +168,7 @@ const Profile = () => {
                                                 <p className=' text-gray-500 text-xs text-end'>{msgs.date}</p>
                                             </div>
                                             <p className='   md:text-base text-sm text-textc   '> {msgs.message} </p>
-                                            <p className=' text-gray-500 text-xs text-end'>{msgs.time}</p>
+                                            {/* <p className=' text-gray-500 text-xs text-end'>{msgs.time}</p> */}
                                         </div>
 
 
