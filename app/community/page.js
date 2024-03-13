@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 // Create your Next.js component
 const Profile = () => {
-
+  
     const [time, setTime] = useState(".");
     const [date, setDate] = useState(".");
     const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
@@ -48,12 +48,21 @@ const Profile = () => {
         return (showDate);
     }
 
-
     useEffect(() => {
+        const interval = setInterval(() => {
+          // Call your function here
+          fetchmessages();
+        }, 2000); 
+    
+        return () => clearInterval(interval);
+      }, []);
+      
 
-        fetchmessages();
+    // useEffect(() => {
 
-    }, [message])
+    //     fetchmessages();
+
+    // }, [message])
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -136,7 +145,7 @@ const Profile = () => {
                                         <IoArrowBackSharp className='h-5 w-5 text-black ' />
                                     </div>
                                 </Link>
-                                <button className=' text-xs rounded-lg px-2 font-light py-2 active:scale-75 duration-300 bg-[#ffffff1c] text-gray-300' onClick={fetchmessages}>view recent messages</button>
+                                {/* <button className=' text-xs rounded-lg px-2 font-light py-2 active:scale-75 duration-300 bg-[#ffffff1c] text-gray-300' onClick={fetchmessages}>view recent messages</button> */}
                             </div>
                         </div>
 
@@ -144,9 +153,9 @@ const Profile = () => {
 
                             <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
                                 <div className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
-                                    <div className=' hidden md:flex w-full justify-end items-center'>
+                                    {/* <div className=' hidden md:flex w-full justify-end items-center'>
                                         <button className=' fixed text-xs font-normal rounded-2xl active:scale-75 duration-300 px-3 mt-16 py-2 bg-[#ffffff1c] text-white' onClick={fetchmessages}>view resent messages</button>
-                                    </div>
+                                    </div> */}
 
                                     {isMsgFetchLoadingOn && <div className=' h-full w-full flex justify-center items-center'><div class="inputloader "></div></div>}
                                     {allMessage.map((msgs, index) => (
