@@ -14,7 +14,7 @@ function getDate() {
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
     const date = today.getDate();
-    const showDate = date + ':' + month + ":" + year;
+    const showDate = date + '/' + month + "/" + year;
     return (showDate);
 }
 // Create your Next.js component

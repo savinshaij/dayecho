@@ -7,14 +7,18 @@ import BottomMenu from '@/components/menu/BottomMenu';
 import Card from '@/components/profileCard/ProfileCard';
 import Link from 'next/link';
 
+//
+
+//
+
 const Profile = () => {
 
     const { data: session } = useSession();
     const { status: sessionStatus } = useSession();
     const [userName, setuserName] = useState(session?.user?.name);
     const [email, setEmail] = useState(session?.user?.email);
-
-
+    
+//
 
     if (sessionStatus === "loading") {
         return (
@@ -46,6 +50,7 @@ const Profile = () => {
                             </div>
                             <div className=' md:hidden w-full flex justify-center items-center mb-7'>
                                 <button className=' px-5 py-2 text-sm  rounded-2xl bg-textc font-bold  ' onClick={() => { signOut() }}>Logout</button>
+                                
                             </div>
                             <div className='   bg-[#ffffff06]  px-5 md:px-10  rounded-3xl  w-full'>
                                 <h2 className=' text-base text-center py-4 md:text-xl  font-medium text-textc'>More</h2>
@@ -79,3 +84,11 @@ const Profile = () => {
 };
 
 export default Profile;
+ 
+
+
+
+// const actionIconVariants = {
+//     open: { scale: 1, y: 0 },
+//     closed: { scale: 0, y: -7 },
+// };
