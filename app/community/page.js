@@ -84,7 +84,9 @@ const [start,setstart]=useState(true);
     // }, [message])
  
     const handleInputFocus = () => {
+        if((getScrollPercentage()  < 88) || (getScrollPercentage()  > 3)  ) {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
        
     };
 

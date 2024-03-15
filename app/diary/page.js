@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Datepicker from "tailwind-datepicker-react"
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import CryptoJS from 'crypto-js';
+import { isEmpty } from 'lodash';
 const getCurrentDate = () => {
   const currentDate = new Date();
   const day = currentDate.getDate();
@@ -31,7 +32,7 @@ const Diary = () => {
   const [infoView, setInfoView] = useState(true);
   const [diaryFound, setDiaryFound] = useState(false);
   const [date, setDate] = useState("");
-  const [diary, setDiary] = useState([]);
+  const [diary, setDiary] = useState();
   const { data: session } = useSession();
   const name = session?.user.name;
   const email = session?.user.email;
@@ -42,7 +43,12 @@ const Diary = () => {
     const bytes = CryptoJS.AES.decrypt(ciphertext, key);
     return bytes.toString(CryptoJS.enc.Utf8);
   };
+  useEffect(() => {
+    console.log(isEmpty(diary));
 
+  }
+
+  );
   const options = {
     title: "Select a date",
     autoHide: true,
@@ -81,38 +87,75 @@ const Diary = () => {
       year: "numeric"
     }
   }
-  const getData = () => {
 
-
+  async function getData() {
     setIsInputSpinnerOn(true);
-    fetch("/api/getDiary", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        date
-      }),
-    }).then(res => {
-      res.json().then(msgs => {
+    try {
+      const res = await fetch("/api/getDiary", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, date }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
         setIsInputSpinnerOn(false);
-        if (msgs.Fetchedmessage.length === 0) {
-          setInfoView(false);
-          setDiaryFound(false);
-        }
-        else {
+        if (data.diaryEntry) {
           setInfoView(false);
           setDiaryFound(true);
+          setDiary(data.diaryEntry);
+          setIsInputSpinnerOn(false);
+          console.log("Diary entry found:", data.diaryEntry);
+        } else {
+          setInfoView(false);
+          setDiaryFound(false);
+          setIsInputSpinnerOn(false);
+          console.log("Diary entry not found:", data.message);
         }
-        setDiary(msgs.Fetchedmessage);
-        console.log(diary.length);
-
-        console.log(diaryFound);
-      })
-    })
-
+      } else {
+        setIsInputSpinnerOn(false);
+        throw new Error("Failed to fetch diary entry.");
+      }
+    } catch (error) {
+      setIsInputSpinnerOn(false);
+      console.error("Error fetching diary entry:", error);
+    }
   }
+
+  // const getData = () => {
+
+
+  //   setIsInputSpinnerOn(true);
+  //   fetch("/api/getDiary", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       email,
+  //       date
+  //     }),
+  //   }).then(res => {
+  //     res.json().then(msgs => {
+  //       setIsInputSpinnerOn(false);
+  //       if (msgs.Fetchedmessage.length === 0) {
+  //         setInfoView(false);
+  //         setDiaryFound(false);
+  //       }
+  //       else {
+  //         setInfoView(false);
+  //         setDiaryFound(true);
+  //       }
+  //       setDiary(msgs.Fetchedmessage);
+  //       console.log(diary.length);
+
+  //       console.log(diaryFound);
+  //     })
+  //   })
+
+  // }
   const handleChange = (selectedDate) => {
     const date = selectedDate;
     const day = date.getDate().toString().padStart(2, '0'); // Get day and pad with leading zero if needed
@@ -207,23 +250,34 @@ const Diary = () => {
                 </div>}
                 {isInputSpinnerOn && <div className="inputloader  absolute top-[50%]  left-[46%] "></div>}
 
-                {diary.map((msgs) => (
+     
 
-                  <div className=' mb-5 ' key={msgs.date} >
-                    <div className=' mx-5'>
-                      <div className=' flex justify-between py-2'>
-                      <h2 className='  md:pt-10 md:px-8 pt-4 px-2  font-light  text-2xl md:text-5xl'>{msgs.mood}</h2>
-                      <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{msgs.date}</p>
-                      </div>
-                    
-                      <h2 className='  md:pt-10 md:px-8 px-2 text-primary font-bold text-2xl md:text-5xl'>{msgs.title}</h2>
-                      {/* <p className='md:px-8 md:py-5  px-2 text-gray-300    font-semibold text-medium md:text-lg'>mood at that day was {}</p> */}
-                      <p className='md:px-8 px-2 text-gray-400  py-3  text-sm md:text-base whitespace-pre-wrap'>{decryptText(msgs.content, encryptionKey)}</p>
+{/* {diary.map((msgs) => ( */}
 
-                    </div>
+  <div className=' mb-5 ' >
+  <div className=' mx-5'>
+    <div className=' flex justify-between py-2'>
+      <h2 className='  md:pt-10 md:px-8 pt-4 px-2  font-light  text-2xl md:text-5xl'>{diary?.mood}</h2>
+      <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{diary?.date}</p>
+    </div>
+  
+    <h2 className='  md:pt-10 md:px-8 px-2 text-primary font-bold text-2xl md:text-5xl'>{diary?.title}</h2>
+    {/* <p className='md:px-8 md:py-5  px-2 text-gray-300    font-semibold text-medium md:text-lg'>mood at that day was {}</p> */}
+    { !isEmpty(diary) && 
+   <p className='md:px-8 px-2 text-gray-400  py-3  text-sm md:text-base whitespace-pre-wrap'> {decryptText(diary?.content, encryptionKey)}</p> 
+    }
+     
+  
+  </div>
+  
+  </div>
+{/* ))} */}
+  
 
-                  </div>
-                ))}
+
+
+
+
 
               </div>
 

@@ -40,7 +40,7 @@ const Diary = () => {
   const [rowContent, setRowContent] = useState("");
   const { data: session } = useSession()
   const name = session?.user.name;
-  const email = session?.user.email;
+  const email = session?.user?.email;
   const [modal, setModal] = useState(false);
   const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
   const date = getCurrentDate();
@@ -87,7 +87,7 @@ const Diary = () => {
   };
 
   const handleSubmit = async (e) => {
-   
+   console.log(email);
     const trimmedContent = rowContent.trim();
     const trimmedTitle = title.trim();
     const trimmedMood = mood.trim();
@@ -126,10 +126,12 @@ const Diary = () => {
 
 
       } else {
+        setIsInputSpinnerOn(false)
         console.log("failed posting diary.");
         setIsDisabled(false);
       }
     } catch (error) {
+      setIsInputSpinnerOn(false)
       console.log("Error sending diary: ", error);
       setIsDisabled(false);
     }
