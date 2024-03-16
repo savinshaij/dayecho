@@ -71,7 +71,7 @@ const Chat = () => {
        
         const interval = setInterval(() => {
             // Call your function here
-            if(getScrollPercentage() != 0  )   {
+            if(getScrollPercentage() > 3  )   {
                 
             fetchmessages();
             
@@ -84,7 +84,7 @@ const Chat = () => {
                 
             }
            
-        }, 2000);
+        }, 1000);
         
         return () => clearInterval(interval);
         
