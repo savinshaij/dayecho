@@ -31,7 +31,7 @@ const Chat = () => {
     const { data: session } = useSession()
     const name = session?.user.name;
     const email = session?.user.email;
-const [start,setstart]=useState(true);
+    const [s, sets] = useState(1);
     // let user = userName || userEmail;
     const containerRef = useRef(null);
 
@@ -68,12 +68,26 @@ const [start,setstart]=useState(true);
 
 
     useEffect(() => {
+       
         const interval = setInterval(() => {
             // Call your function here
+            if(getScrollPercentage() != 0  )   {
+                
             fetchmessages();
+            
+            }
+            else{
+                
+                if(s){
+                    bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); 
+                } 
+                
+            }
+           
         }, 2000);
-
+        
         return () => clearInterval(interval);
+        
     }, []);
 
 
@@ -84,35 +98,49 @@ const [start,setstart]=useState(true);
     // }, [message])
  
     const handleInputFocus = () => {
+        sets(false);
         if(getScrollPercentage()  < 88)   {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
         }
+       
        
     };
 
     useEffect(() => {
-       
-        if(getScrollPercentage()  > 88 ) {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }  
         
+            
+           
+        
+        if(getScrollPercentage()  > 88 ) {
+            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+            
+        }  
+    
     
     }, [allMessage]);
-
+   
    
  
 
     function fetchmessages() {
-        setIsMsgFetchLoadingOn(true);
+       
+            setIsMsgFetchLoadingOn(true);
+      
+        
         fetch('/api/communityMsgGet').then(res => {
             res.json().then(msgs => {
                 setAllMessage(msgs.Fetchedmessage);
-
-                console.log(msgs.Fetchedmessage)
+                // if(s){
+                // bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+                // }
+                // sets(false);
+                
+                // console.log(s);
+                
                 setIsMsgFetchLoadingOn(false);
             })
         })
-
+       
     }
     const handleSubmit = async (e) => {
         const trimmedValue = message.trim();
@@ -149,7 +177,7 @@ const [start,setstart]=useState(true);
         }
     };
 
-
+  
     if (sessionStatus === "loading") {
         return (
             <div className="flex min-h-screen flex-col items-center justify-between p-24">
