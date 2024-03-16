@@ -15,7 +15,7 @@ export default function Card() {
                 <div className="flex flex-col md:justify-center ">
                     <h4 className=" font-semibold text-left md:text-xl">Savin</h4>
                     <p className="text-gray-400 md:text-lg">ui/ux designer </p>
-                    <p className="text-gray-400">Frontend developer </p>
+                    <p className="text-gray-400">Full stack developer </p>
                     <div className="flex justify-center gap-2  align-center pt-1">
                 <a rel="noopener noreferrer" href="" aria-label="GitHub" className="p-2 rounded-mdtext-gray-100 hover:text-violet-400">
                     <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-current">

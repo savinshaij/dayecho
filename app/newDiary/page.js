@@ -74,6 +74,7 @@ const Diary = () => {
                 >
                     <Option setOpen={setOpen} setValue ={setMood} text="😊" />
                     <Option setOpen={setOpen} setValue ={setMood}  text="😂" />
+                    <Option setOpen={setOpen} setValue ={setMood} text="😍" />
                     <Option setOpen={setOpen} setValue ={setMood} text="😞" />
                     <Option setOpen={setOpen} setValue ={setMood} text="😭" />
                     <Option setOpen={setOpen} setValue ={setMood} text="😡" />
