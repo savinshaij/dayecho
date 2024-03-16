@@ -71,7 +71,7 @@ const Chat = () => {
        
         const interval = setInterval(() => {
             // Call your function here
-            if(getScrollPercentage() > 3  )   {
+            if(getScrollPercentage() !=0 )    {
                 
             fetchmessages();
             
@@ -83,7 +83,11 @@ const Chat = () => {
                 } 
                 
             }
-           
+            if(getScrollPercentage() < 3 )    {
+                
+                bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); 
+                
+                }
         }, 1000);
         
         return () => clearInterval(interval);
