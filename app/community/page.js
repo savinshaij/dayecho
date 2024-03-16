@@ -214,11 +214,15 @@ const Chat = () => {
 
                         <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
                             <div ref={containerRef} className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
+                               
                                 {/* <div className=' hidden md:flex w-full justify-end items-center'>
                                         <button className=' fixed text-xs font-normal rounded-2xl active:scale-75 duration-300 px-3 mt-16 py-2 bg-[#ffffff1c] text-white' onClick={fetchmessages}>view resent messages</button>
                                     </div> */}
 
                                 {isMsgFetchLoadingOn && <div className=' h-full w-full flex justify-center items-center'><div class="inputloader "></div></div>}
+                                <div className=' flex justify-center items-center mt-28'>
+                                    <p className=' text-xs font-light text-[#ffffff4d]'> scroll up to go to bottom</p>
+                                </div>
                                 {allMessage.map((msgs, index) => (
 
                                     <div key={index} className='max-w-xs bg-bgs rounded-tl-none pb-3 px-3 pt-1 mx-2 my-3  rounded-3xl'>
