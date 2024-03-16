@@ -261,10 +261,15 @@ const Diary = () => {
       <p className='md:pt-10 md:px-8 pt-4 px-2 text-end  text-gray-400 text-sm md:text-base '>{diary?.date}</p>
     </div>
   
-    <h2 className='  md:pt-10 md:px-8 px-2 text-primary font-bold text-2xl md:text-5xl'>{diary?.title}</h2>
+    
     {/* <p className='md:px-8 md:py-5  px-2 text-gray-300    font-semibold text-medium md:text-lg'>mood at that day was {}</p> */}
     { !isEmpty(diary) && 
+    <div>
+  <h2 className='md:pt-10 md:px-8 px-2 text-primary font-bold text-2xl md:text-5xl'>{decryptText(diary.title, encryptionKey)}</h2>
    <p className='md:px-8 px-2 text-gray-400  py-3  text-sm md:text-base whitespace-pre-wrap'> {decryptText(diary?.content, encryptionKey)}</p> 
+
+    </div>
+  
     }
      
   

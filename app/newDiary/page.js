@@ -35,7 +35,8 @@ const Diary = () => {
   const router = useRouter();
   const { status: sessionStatus } = useSession();
   const [show, setShow] = useState("");
-  const [title, setTitle] = useState("");
+ 
+  const [rowtitle, setRowTitle] = useState("");
   const [mood, setMood] = useState("mood");
   const [rowContent, setRowContent] = useState("");
   const { data: session } = useSession()
@@ -89,15 +90,16 @@ const Diary = () => {
   const handleSubmit = async (e) => {
    console.log(email);
     const trimmedContent = rowContent.trim();
-    const trimmedTitle = title.trim();
+    const trimmedTitle = rowtitle.trim();
     const trimmedMood = mood.trim();
-    if (rowContent === "" || trimmedContent === "" || trimmedTitle === "" || trimmedMood === "" || title === "" || mood === "") {
+    if (rowContent === "" || trimmedContent === "" || trimmedTitle === "" || trimmedMood === "" || rowtitle === "" || mood === "") {
       return null;
     }
-    setTitle(trimmedTitle);
+  
     setMood(trimmedMood);
     const content = encryptText(rowContent, encryptionKey);
-    console.log('Encrypted:', content);
+    const title = encryptText(trimmedTitle, encryptionKey);
+
     setIsDisabled(true);
     setIsInputSpinnerOn(true);
     try {
@@ -119,7 +121,7 @@ const Diary = () => {
       if (res.ok) {
         setRowContent("")
         setMood("")
-        setTitle("")
+        setRowTitle("")
         setIsInputSpinnerOn(false)
         setIsDisabled(false);
         setModal(true);
@@ -182,7 +184,7 @@ const Diary = () => {
 
               <div className=' h-full  w-full md:bg-[#ffffff08] md:rounded-3xl rounded-xl md:px-5 pt-4'>
                 <div className=' mb-5 flex  gap-3'>
-                  <input className='border-solid bg-[#ffffff0f] w-full md:px-4 px-2 md:rounded-xl rounded-md text-sm md:text-lg py-3 text-white outline-none' placeholder='Titile of the day!' type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                  <input className='border-solid bg-[#ffffff0f] w-full md:px-4 px-2 md:rounded-xl rounded-md text-sm md:text-lg py-3 text-white outline-none' placeholder='Titile of the day!' type="text" value={rowtitle} onChange={e => setRowTitle(e.target.value)} />
                   {/* <input className='border-solid bg-[#ffffff0f] md:w-[30%] w-full md:px-4 px-2 md:rounded-xl rounded-md py-3 text-sm md:text-lg text-white outline-none ' placeholder='How was your mood today' type="text" value={mood} onChange={e => setMood(e.target.value)} /> */}
                   <EmojiDrop/>
                 </div>
