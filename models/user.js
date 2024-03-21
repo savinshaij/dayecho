@@ -1,20 +1,6 @@
 import mongoose, { Schema, models } from "mongoose";
 
 const userSchema = new Schema(
-  // {
-  //   name: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   email: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   password: {
-  //     type: String,
-  //     required: true,
-  //   },
-  // },
 
     {
       name: {
@@ -29,10 +15,7 @@ const userSchema = new Schema(
         type: String,
         required: true,
       },
-      points: {
-        type: Number
-      
-      },
+      points: { type: Number, default: 0 },
       var1: {
         type: Boolean
        

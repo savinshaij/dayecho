@@ -68,83 +68,62 @@ const Chat = () => {
 
 
     useEffect(() => {
-       
+
         const interval = setInterval(() => {
             // Call your function here
-            if(getScrollPercentage() !=0 )    {
-                
-            fetchmessages();
-            
+            if (getScrollPercentage() != 0) {
+
+                fetchmessages();
+
             }
-            else{
-                
-                if(s){
-                    bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); 
-                } 
-                
-            }
-            if(getScrollPercentage() < 3 )    {
-                
-                bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); 
-                
+            else {
+
+                if (s) {
+                    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }
+
+            }
+            if (getScrollPercentage() < 3) {
+
+                bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+            }
         }, 1000);
-        
+
         return () => clearInterval(interval);
-        
+
     }, []);
 
-
-    // useEffect(() => {
-
-    //     fetchmessages();
-
-    // }, [message])
- 
     const handleInputFocus = () => {
         sets(false);
-        if(getScrollPercentage()  < 88)   {
+        if (getScrollPercentage() < 88) {
             bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
         }
-       
-       
+
+
     };
 
     useEffect(() => {
-        
-            
-           
-        
-        if(getScrollPercentage()  > 88 ) {
+        if (getScrollPercentage() > 88) {
             bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-            
-        }  
-    
-    
+        }
     }, [allMessage]);
-   
-   
- 
+
+
+
 
     function fetchmessages() {
-       
-            setIsMsgFetchLoadingOn(true);
-      
-        
+
+        setIsMsgFetchLoadingOn(true);
+
+
         fetch('/api/communityMsgGet').then(res => {
             res.json().then(msgs => {
                 setAllMessage(msgs.Fetchedmessage);
-                // if(s){
-                // bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-                // }
-                // sets(false);
-                
-                // console.log(s);
-                
                 setIsMsgFetchLoadingOn(false);
             })
         })
-       
+
     }
     const handleSubmit = async (e) => {
         const trimmedValue = message.trim();
@@ -153,8 +132,6 @@ const Chat = () => {
         }
         setMessage(trimmedValue);
         setIsInputSpinnerOn(true);
-        // setTime(getTime());
-        // setDate(getDate());
         try {
             const res = await fetch("api/communityMsgPost", {
                 method: "POST",
@@ -181,7 +158,7 @@ const Chat = () => {
         }
     };
 
-  
+
     if (sessionStatus === "loading") {
         return (
             <div className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -218,7 +195,7 @@ const Chat = () => {
 
                         <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
                             <div ref={containerRef} className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
-                               
+
                                 {/* <div className=' hidden md:flex w-full justify-end items-center'>
                                         <button className=' fixed text-xs font-normal rounded-2xl active:scale-75 duration-300 px-3 mt-16 py-2 bg-[#ffffff1c] text-white' onClick={fetchmessages}>view resent messages</button>
                                     </div> */}
