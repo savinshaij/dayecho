@@ -47,9 +47,9 @@ const Updates = () => {
                   </section>
 
                   <section>
-                    <h2 className=' text-lg font-semibold text-textc  py-2'>⭐2028 Game</h2>
+                    <h2 className=' text-lg font-semibold text-textc  py-2'>⭐2048 Game</h2>
                     <p className='  text-[#ffffff8d]  py-2'>
-                      Welcome to 2028, an immersive and challenging game experience right on our home page! Step into the future and explore the world of 2028. From futuristic cities to advanced technologies, embark on a thrilling adventure filled with quests, puzzles, and surprises. Dive deep into the game to uncover its mysteries and learn about the world of tomorrow. Get ready to be captivated by the sights, sounds, and stories of 2028!
+                    2048 is a popular puzzle game played on a 4x4 grid where players combine numbered tiles by swiping in four directions to create a tile with the number 2048. With each move, a new tile appears on the grid, and if two tiles with the same number collide, they merge into one with their sum. The game continues until the grid fills up, and no more valid moves can be made, at which point the players score is calculated based on the values of the tiles. The objective is to reach the 2048 tile, though players can continue playing to achieve higher scores even after reaching this goal.
                     </p>
                     <hr />
                   </section>

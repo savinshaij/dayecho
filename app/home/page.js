@@ -147,7 +147,7 @@ export default function Page() {
                                 </div>
 
                                 <div className=' w-full text-[10px]  text-center text-[#ffffff85]  '>
-                                    2028
+                                    2048
                                 </div>
                             </div>
                             </Link>
