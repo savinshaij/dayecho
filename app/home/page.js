@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 
 const getQuoteOfDay = async () => {
@@ -126,9 +127,56 @@ export default function Page() {
 
                             </motion.div>
                         )}
-                        <div className=' my-5 '>
+                        <div className=' w-full flex justify-between font-light px-4 mt-7 mb-3  '>
+                        <Link href='/myPosts'>
+                            <div className='  flex flex-col justify-center items-center  text-2xl  '>
+                                <div className=' flex flex-col justify-center items-center h-14 w-14 active:scale-90 transition-all duration-200 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                    📮
+                                </div>
 
-                            <p className=' text-[#ffffff6d]  font-normal text-base text-center md:text-2xl  my-9 '>Posts</p>
+                                <div className='   w-full text-[10px]  text-center text-[#ffffff85]  '>
+                                    my posts
+                                </div>
+                            </div>
+                            </Link>
+                            <Link href='/game'>
+                            <div className='  flex flex-col justify-center items-center  text-2xl '>
+
+                                <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                    🎮
+                                </div>
+
+                                <div className=' w-full text-[10px]  text-center text-[#ffffff85]  '>
+                                    2028
+                                </div>
+                            </div>
+                            </Link>
+<Link href='/tasks'>
+<div className='  flex flex-col justify-center items-center  text-2xl '>
+                                <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                    🎯
+                                </div>
+
+                                <div className=' w-full text-[10px]  text-center text-[#ffffff85] '>
+                                    tasks
+                                </div>
+                            </div>
+</Link>
+<Link href='/whatsNew'>
+                            <div className='  flex flex-col justify-center items-center  text-2xl '>
+
+                                <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                    ⭐
+                                </div>
+
+                                <div className=' w-full text-[10px]  text-center text-[#ffffff85]  '>
+                                    Whats New
+                                </div>
+                            </div>
+                            </Link>
+                        </div>
+                        <div className=' mb-5 '>
+                            <p className=' text-[#ffffff6d]  font-normal text-base text-center md:text-2xl  mb-5 '>Posts</p>
 
                             <div className='w-full h-full  flex flex-col-reverse'>
                                 {isInputSpinnerOn && <div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div>}
@@ -142,14 +190,9 @@ export default function Page() {
                                         <div className=' mx-5'>
                                             <div className=' flex'>
                                                 <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
-
                                             </div>
-
                                             <p className=' text-gray-300  my-1  font-medium text-base md:text-lg'>{msgs.subject}:</p>
-
                                             <p className=' text-gray-400 font-normal whitespace-pre-wrap text-sm md:text-base'>{msgs.message}</p>
-
-
                                             <div>
                                                 <p className='pt-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p>
                                             </div>

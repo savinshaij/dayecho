@@ -73,7 +73,7 @@ const NavBar = () => {
                                 ) : (
                                     <>
 
-                                        <div className=' ml-5 flex gap-4 justify-center items-center'>
+                                        <div className=' ml-5  flex gap-4 justify-center items-center'>
                                             <p className=' text-gray-400 '>Logged in as, {user}</p>
                                             <button className="  rounded-3xl  bg-primary text-gray-900 font-medium py-2 px-6  transition-all hover:bg-[#dbde48] active:scale-95" onClick={() => { signOut() }}>
                                                 Log out
