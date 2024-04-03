@@ -7,8 +7,8 @@
   border-radius: 3px;
   background: rgba(238, 228, 218, 0.35);
   box-shadow: 0 0 30px 10px rgb(243 215 116 / 0%),
-  inset 0 0 0 1px rgb(255 255 255 / 0%);
-  transition: 10ms ease-in-out;
+    inset 0 0 0 1px rgb(255 255 255 / 0%);
+  transition: 90ms ease-in-out;
   transition-property: transform;
 }
 
@@ -35,35 +35,41 @@
     background: #ffffff69;
   }
 }
+
 .tile-4 {
   .tileInner {
     background: #ffdc9ca4;
   }
 }
+
 .tile-8 {
   .tileInner {
     color: #f9f6f2;
     background: #f3b27a;
   }
 }
+
 .tile-16 {
   .tileInner {
     color: #f9f6f2;
     background: #f69664;
   }
 }
+
 .tile-32 {
   .tileInner {
     color: #f9f6f2;
     background: #f77c5f;
   }
 }
+
 .tile-64 {
   .tileInner {
     color: #f9f6f2;
     background: #f75f3b;
   }
 }
+
 .tile-128 {
   .tileInner {
     color: #f9f6f2;
@@ -72,14 +78,16 @@
       inset 0 0 0 1px rgb(255 255 255 / 14%);
   }
 }
+
 .tile-256 {
   .tileInner {
     color: #f9f6f2;
     background: #edcc62;
     box-shadow: 0 0 30px 10px rgb(243 215 116 / 32%),
-    inset 0 0 0 1px rgb(255 255 255 / 19%);
+      inset 0 0 0 1px rgb(255 255 255 / 19%);
   }
 }
+
 .tile-512 {
   .tileInner {
     color: #f9f6f2;
@@ -88,15 +96,17 @@
       inset 0 0 0 1px rgb(255 255 255 / 24%);
   }
 }
+
 .tile-1024 {
   .tileInner {
     color: #f9f6f2;
     background: #edc53f;
     box-shadow: 0 0 30px 10px rgb(243 215 116 / 48%),
-    inset 0 0 0 1px rgb(255 255 255 / 29%);
+      inset 0 0 0 1px rgb(255 255 255 / 29%);
     font-size: 35px;
   }
 }
+
 .tile-2048 {
   .tileInner {
     color: #f9f6f2;
