@@ -11,7 +11,7 @@ const Updates = () => {
   if (sessionStatus === "loading") {
     return (
       <div className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div class="inputloader "></div>
+        <div className="inputloader "></div>
       </div>
     );
   }
@@ -41,7 +41,7 @@ const Updates = () => {
                   <section className='   py-2'>
                     <h2 className=' text-xl font-semibold text-textc  py-2'>⭐Echo Points</h2>
                     <p className='  text-[#ffffff8d]  py-2'>
-                      Earn Echo Points by maintaining a consistent diary entry routine! Simply jot down your thoughts and experiences each day for three consecutive days, and your Echo Points will increase by 1. But remember, consistency is key! If you miss posting for three days in a row, your streak resets, and you'll need to start again. Additionally, each time you post a diary entry, you'll earn additional Echo Points, encouraging you to keep up the habit and share your journey ,you can find it from profile .
+                      Earn Echo Points by maintaining a consistent diary entry routine! Simply jot down your thoughts and experiences each day for three consecutive days, and your Echo Points will increase by 1. But remember, consistency is key! If you miss posting for three days in a row, your streak resets, and you&apos;ll need to start again. Additionally, each time you post a diary entry, you&apos;ll earn additional Echo Points, encouraging you to keep up the habit and share your journey ,you can find it from profile .
                     </p>
                     <hr />
                   </section>
