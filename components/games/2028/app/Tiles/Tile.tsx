@@ -22,4 +22,7 @@ const Tile = memo((props: TileProps) => {
   );
 });
 
+// Provide a display name to the memoized component
+Tile.displayName = 'Tile';
+
 export default Tile;
