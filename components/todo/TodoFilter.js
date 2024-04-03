@@ -41,7 +41,7 @@ function TodoFilter({ filterStatus, setFilterStatus, clearCompleted, todos }) {
       </div>
 
       {/*Mobile*/}
-      <div className="sm:hidden p-4 mt-6 px-4 flex justify-center gap-4 text-sm bg-bgs font-bold rounded-md text-[#4d5066] shadow-xl">
+      <div className="sm:hidden p-4 mt-6 px-4 flex justify-center gap-4 text-sm bg-bgs font-bold rounded-md text-textc shadow-xl">
         {buttons.map((b, index) => (
           <button
             key={index}

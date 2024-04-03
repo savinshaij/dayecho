@@ -127,7 +127,7 @@ export default function Page() {
 
                             </motion.div>
                         )}
-                        <div className=' w-full flex justify-between font-light px-4 mt-7 mb-3  '>
+                        <div className=' w-full flex justify-between font-light  mt-7 mb-3  '>
                         <Link href='/myPosts'>
                             <div className='  flex flex-col justify-center items-center  text-2xl  '>
                                 <div className=' flex flex-col justify-center items-center h-14 w-14 active:scale-90 transition-all duration-200 bg-[#ffffff16] rounded-xl cursor-pointer'>

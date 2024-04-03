@@ -98,7 +98,7 @@ function Todos() {
           className=" w-full md:p-4 md:pl-16 p-3 text-base rounded-xl focus:outline-none  bg-bgs text-textc placeholder:text-[#9293a4] "
           placeholder="Create a new task todo"
         />
-            <button className=' bg-[#ffffff83] text-black text-md font-semibold md:p-4 p-3  px-8 mx-2  active:scale-90 duration-300 rounded-xl ' onClick={submitHandler} > save</button>
+            <button className=' bg-[#fff] text-black text-md font-semibold md:p-4 p-3  px-8 mx-2  active:scale-90 duration-300 rounded-xl ' onClick={submitHandler} > save</button>
       </form>
 
       {todos.length ? (

@@ -8,7 +8,7 @@
   background: rgba(238, 228, 218, 0.35);
   box-shadow: 0 0 30px 10px rgb(243 215 116 / 0%),
   inset 0 0 0 1px rgb(255 255 255 / 0%);
-  transition: 100ms ease-in-out;
+  transition: 80ms ease-in-out;
   transition-property: transform;
 }
 
@@ -21,12 +21,12 @@
 }
 
 .new {
-  animation: appear 300ms ease 100ms;
+  animation: appear 200ms ease 100ms;
   animation-fill-mode: backwards;
 }
 
 .merged {
-  animation: grow 200ms ease 100ms;
+  animation: grow 100ms ease 100ms;
   animation-fill-mode: backwards;
 }
 
