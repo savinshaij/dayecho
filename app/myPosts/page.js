@@ -66,37 +66,37 @@ const Diary = () => {
               transition={{ duration: 1, ease: 'easeInOut' }}
             >
               <div className=' h-full w-full  mt-20 md:mt-0   md:bg-[#ffffff06] rounded-3xl'>
-              <div className=' mb-5 px-6 py-8  '>
-                            <h1 className=' text-white text-3xl  font-bold  md:text-5xl  mb-10 '>My <span className=' text-primary'>Posts</span></h1>
-{allPost.length ===0?<div className=' w-full  text-xl text-[#ffffff77] text-center'> No Posts Yet</div> : null}
-                            <div className='w-full h-full  flex flex-col-reverse'>
-                                {isInputSpinnerOn && <div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div>}
-                                {allPost.map((msgs) => (
-                                    <motion.div className=' mb-5 ' key={msgs.subject}
-                                        initial={{ opacity: 0, }}
-                                        animate={{ opacity: 1, }}
-                                        exit={{ opacity: 0, }}
-                                        transition={{ duration: 1, ease: 'easeInOut' }}
-                                    >
-                                        <div className=' mx-5'>
-                                            <div className=' flex'>
-                                                <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
-                                            </div>
-                                            <p className=' text-gray-300  my-1  font-medium text-base md:text-lg'>{msgs.subject}:</p>
-                                            <p className=' text-gray-400 font-normal whitespace-pre-wrap text-sm md:text-base'>{msgs.message}</p>
-                                            <div>
-                                                <p className='pt-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p>
-                                            </div>
-                                            <p className=' text-end  text-gray-400 font-normal text-xs md:text-base my-1'>{msgs.date}</p>
-                                        </div>
-                                        <hr className='h-px  my-1 bg-[#ffffff21] border-0 ' />
-                                    </motion.div>
-                                ))}
-                            </div>
-
-
-
+                <div className=' mb-5  py-8  '>
+                  <h1 className=' text-white text-3xl  font-bold  md:text-5xl  mb-10 '>My <span className=' text-primary'>Posts</span></h1>
+                  {allPost.length === 0 ? <div className=' w-full  text-xl text-[#ffffff77] text-center'> No Posts Yet</div> : null}
+                  <div className='w-full h-full  flex flex-col-reverse'>
+                    {isInputSpinnerOn && <div className=' flex w-full justify-center items-center'><div className="inputloader  "></div></div>}
+                    {allPost.map((msgs) => (
+                      <motion.div className=' mb-5 ' key={msgs.subject}
+                        initial={{ opacity: 0, }}
+                        animate={{ opacity: 1, }}
+                        exit={{ opacity: 0, }}
+                        transition={{ duration: 1, ease: 'easeInOut' }}
+                      >
+                        <div className=' mx-5'>
+                          <div className=' flex'>
+                            <h2 className=' text-primary font-bold text-lg md:text-xl'>{msgs.name}</h2>
+                          </div>
+                          <p className=' text-gray-300  my-1  font-medium text-base md:text-lg'>{msgs.subject}:</p>
+                          <p className=' text-gray-400 font-normal whitespace-pre-wrap text-sm md:text-base'>{msgs.message}</p>
+                          <div>
+                            <p className='pt-3  text-primary text-xs md:text-sm my-1'>{msgs.tag}</p>
+                          </div>
+                          <p className=' text-end  text-gray-400 font-normal text-xs md:text-base my-1'>{msgs.date}</p>
                         </div>
+                        <hr className='h-px  my-1 bg-[#ffffff21] border-0 ' />
+                      </motion.div>
+                    ))}
+                  </div>
+
+
+
+                </div>
               </div>
             </motion.div>
           </div>
