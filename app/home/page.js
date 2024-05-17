@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import BottomMenu from '@/components/menu/BottomMenu';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { FaArrowRight } from "react-icons/fa";
 
 
 const getQuoteOfDay = async () => {
@@ -26,6 +27,7 @@ export default function Page() {
     const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
     const [quote, setQuote] = useState(null);
     const [echoPoints, setEchoPoints] = useState(0);
+    const [todos, setTodos] = useState("No tasks to do");
     useEffect(() => {
         setIsInputSpinnerOn(true);
         fetch('/api/getPost').then(res => {
@@ -45,7 +47,12 @@ export default function Page() {
         };
         fetchQuote();
         getPoint();
+        const items = JSON.parse(localStorage.getItem("todos"));
+        if (items) {
+            setTodos(items[0].title);
 
+
+        }
     }, [])
     const getPoint = async (e) => {
 
@@ -127,52 +134,66 @@ export default function Page() {
 
                             </motion.div>
                         )}
-                        <div className=' w-full flex justify-between   mt-7 mb-3  '>
-                        <Link href='/myPosts'>
-                            <div className='  flex flex-col justify-center items-center  text-2xl  '>
-                                <div className=' flex flex-col justify-center items-center h-14 w-14 active:scale-90 transition-all duration-200 bg-[#ffffff16] rounded-xl cursor-pointer'>
-                                    📮
-                                </div>
+                        <div className=' w-full flex gap-3   mt-7 mb-3  '>
+                            {/* <Link href='/myPosts'>
+                                <div className='  flex flex-col justify-center items-center  text-2xl  '>
+                                    <div className=' flex flex-col justify-center items-center h-14 w-14 active:scale-90 transition-all duration-200 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                        📮
+                                    </div>
 
-                                <div className='   w-full text-[10px]  text-center text-[#ffffff85]  '>
-                                    my posts
+                                    <div className='   w-full text-[10px]  text-center text-[#ffffff85]  '>
+                                        my posts
+                                    </div>
                                 </div>
-                            </div>
                             </Link>
                             <Link href='/game'>
-                            <div className='  flex flex-col justify-center items-center  text-2xl '>
+                                <div className='  flex flex-col justify-center items-center  text-2xl '>
 
-                                <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
-                                    🎮
-                                </div>
+                                    <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                        🎮
+                                    </div>
 
-                                <div className=' w-full text-[10px]  text-center text-[#ffffff85]  '>
-                                    2048
+                                    <div className=' w-full text-[10px]  text-center text-[#ffffff85]  '>
+                                        2048
+                                    </div>
                                 </div>
-                            </div>
+                            </Link> */}
+                            <Link href='/tasks' className=' w-full'>
+                                <div className='  w-full flex flex-col justify-center items-center   text-2xl '>
+                                    <div className=' w-full gap-3 flex justify-between items-center px-2 py-2 active:scale-90 transition-all duration-200 h-14 bg-[#ffffff16] rounded-2xl cursor-pointer' >
+                                        <div className=' pl-4 flex justify-center items-center gap-3'>
+                                            <div className=' w-4 h-4 bg-green-400 rounded-full '>
+                                            
+                                            </div>
+                                            <div className='font-semibold  text-lg text-textc'>
+                                                {todos}
+                                            </div>
+                                        </div>
+
+                                        <div className='font-semibold h-full flex justify-center items-center    text-lg text-bgs rounded-xl  w-10  bg-green-400'>
+                                        <FaArrowRight />
+                                        </div>
+                                    </div>
+
+                                   
+                                </div>
                             </Link>
-<Link href='/tasks'>
-<div className='  flex flex-col justify-center items-center  text-2xl '>
-                                <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
-                                    🎯
-                                </div>
+                            <Link href='/whatsNew'>
+                                <div className='  flex flex-col justify-center items-center  text-2xl '>
 
-                                <div className=' w-full text-[10px]  text-center text-[#ffffff85] '>
-                                    tasks
-                                </div>
-                            </div>
-</Link>
-<Link href='/whatsNew'>
-                            <div className='  flex flex-col justify-center items-center  text-2xl '>
+                                    <div className='border  flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-20 bg-[#ffffff16] rounded-xl cursor-pointer'>
+                                        
+                                        <p className=' text-base font-bold text-center text-[#ffffffe1]  '>
+                                            New🌟 
+                                            <p className=' text-xs text-[#ffffffb6]  '>
 
-                                <div className=' flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-14 bg-[#ffffff16] rounded-xl cursor-pointer'>
-                                    ⭐
-                                </div>
+                                                updates
+                                            </p>
+                                        </p>
+                                    </div>
 
-                                <div className=' w-full text-[10px]  text-center text-[#ffffff85]  '>
-                                    Whats New
+
                                 </div>
-                            </div>
                             </Link>
                         </div>
                         <div className=' mb-5 '>
