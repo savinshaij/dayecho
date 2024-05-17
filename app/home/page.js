@@ -47,12 +47,14 @@ export default function Page() {
         };
         fetchQuote();
         getPoint();
+
         const items = JSON.parse(localStorage.getItem("todos"));
         if (items) {
-            setTodos(items[0].title);
-
+            setTodos(items[0]?.title);
+            console.log("heyyyy")
 
         }
+
     }, [])
     const getPoint = async (e) => {
 
@@ -163,28 +165,30 @@ export default function Page() {
                                     <div className=' w-full gap-3 flex justify-between items-center px-2 py-2 active:scale-90 transition-all duration-200 h-14 bg-[#ffffff16] rounded-2xl cursor-pointer' >
                                         <div className=' pl-4 flex justify-center items-center gap-3'>
                                             <div className=' w-4 h-4 bg-green-400 rounded-full '>
-                                            
+
                                             </div>
                                             <div className='font-semibold  text-lg text-textc'>
+                                            {todos ? (<>
                                                 {todos}
+                                            </>) : (<>No new tasks to do</>)}
                                             </div>
                                         </div>
 
                                         <div className='font-semibold h-full flex justify-center items-center    text-lg text-bgs rounded-xl  w-10  bg-green-400'>
-                                        <FaArrowRight />
+                                            <FaArrowRight />
                                         </div>
                                     </div>
 
-                                   
+
                                 </div>
                             </Link>
                             <Link href='/whatsNew'>
                                 <div className='  flex flex-col justify-center items-center  text-2xl '>
 
                                     <div className='border  flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-20 bg-[#ffffff16] rounded-xl cursor-pointer'>
-                                        
+
                                         <p className=' text-base font-bold text-center text-[#ffffffe1]  '>
-                                            New🌟 
+                                            New🌟
                                             <p className=' text-xs text-[#ffffffb6]  '>
 
                                                 updates
