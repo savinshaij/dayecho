@@ -7,7 +7,7 @@ import BottomMenu from '@/components/menu/BottomMenu';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaArrowRight } from "react-icons/fa";
-
+import { IoIosArrowForward } from "react-icons/io";
 
 const getQuoteOfDay = async () => {
     const dayOfYear = new Date().getDay();
@@ -136,7 +136,7 @@ export default function Page() {
 
                             </motion.div>
                         )}
-                        <div className=' w-full flex gap-3   mt-7 mb-3  '>
+                        <div className=' w-full flex gap-3   mt-5 mb-3  '>
                             {/* <Link href='/myPosts'>
                                 <div className='  flex flex-col justify-center items-center  text-2xl  '>
                                     <div className=' flex flex-col justify-center items-center h-14 w-14 active:scale-90 transition-all duration-200 bg-[#ffffff16] rounded-xl cursor-pointer'>
@@ -162,27 +162,26 @@ export default function Page() {
                             </Link> */}
                             <Link href='/tasks' className=' w-full'>
                                 <div className='  w-full flex flex-col justify-center items-center   text-2xl '>
-                                    <div className=' w-full gap-3 flex justify-between items-center px-2 py-2 active:scale-90 transition-all duration-200 h-14 bg-[#ffffff16] rounded-2xl cursor-pointer' >
-                                        <div className=' pl-4 flex justify-center items-center gap-3'>
-                                            <div className=' w-4 h-4 bg-green-400 rounded-full '>
+                                    <div className=' w-full gap-3 flex justify-between items-center px-1 overflow-hidden py-1  h-14  border border-[#ffffff16] rounded-2xl ' >
+                                        <div className='  pl-4 flex overflow-hidden justify-center items-center gap-3'>
 
-                                            </div>
-                                            <div className='font-semibold  text-lg text-textc'>
-                                            {todos ? (<>
-                                                {todos}
-                                            </>) : (<>No new tasks to do</>)}
+                                            <div className='  text-base whitespace-nowrap overflow-hidden text-[#ffffff66]'>
+                                                {todos ? (<><p>🟡 {todos}</p></>)
+                                                    : (<>🟡 No new tasks to do</>)}
                                             </div>
                                         </div>
-
-                                        <div className='font-semibold h-full flex justify-center items-center    text-lg text-bgs rounded-xl  w-10  bg-green-400'>
-                                            <FaArrowRight />
-                                        </div>
+                                        <Link href='/tasks' >
+                                            <div className='font-bold h-full flex justify-center items-center active:scale-90 transition-all duration-200 cursor-pointer    text-lg text-bgs rounded-xl  py-2 px-2  bg-primary'>
+                                                <p>Tasks</p>
+                                                <IoIosArrowForward  className=' text-xl font-bold'/>
+                                            </div>
+                                        </Link>
                                     </div>
 
 
                                 </div>
                             </Link>
-                            <Link href='/whatsNew'>
+                            {/* <Link href='/whatsNew'>
                                 <div className='  flex flex-col justify-center items-center  text-2xl '>
 
                                     <div className='border  flex flex-col justify-center items-center active:scale-90 transition-all duration-200 h-14 w-20 bg-[#ffffff16] rounded-xl cursor-pointer'>
@@ -198,7 +197,7 @@ export default function Page() {
 
 
                                 </div>
-                            </Link>
+                            </Link> */}
                         </div>
                         <div className=' mb-5 '>
                             <p className=' text-[#ffffff6d]  font-normal text-base text-center md:text-2xl  mb-5 '>Posts</p>
