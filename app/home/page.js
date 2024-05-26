@@ -162,7 +162,7 @@ export default function Page() {
                             </Link> */}
                             <Link href='/tasks' className=' w-full'>
                                 <div className='  w-full flex flex-col justify-center items-center   text-2xl '>
-                                    <div className=' w-full gap-3 flex justify-between items-center px-1 overflow-hidden py-1  h-14  border border-[#ffffff16] rounded-2xl ' >
+                                    <div className=' w-full gap-3 flex justify-between items-center px-2 overflow-hidden py-2  h-14  border border-[#ffffff16] rounded-2xl ' >
                                         <div className='  pl-4 flex overflow-hidden justify-center items-center gap-3'>
 
                                             <div className='  text-base whitespace-nowrap overflow-hidden text-[#ffffff66]'>
@@ -171,7 +171,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         <Link href='/tasks' >
-                                            <div className='font-bold h-full flex justify-center items-center active:scale-90 transition-all duration-200 cursor-pointer    text-lg text-bgs rounded-xl  py-2 px-2  bg-primary'>
+                                            <div className='font-bold h-full flex justify-center items-center active:scale-90 transition-all duration-200 cursor-pointer text-base   text-bgs rounded-xl  py-2 px-2  bg-primary'>
                                                 <p>Tasks</p>
                                                 <IoIosArrowForward  className=' text-xl font-bold'/>
                                             </div>
