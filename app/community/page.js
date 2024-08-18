@@ -1,255 +1,153 @@
+// pages/chat.js
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+
+import { ref, onValue } from 'firebase/database';
+import database from '../../lib/firebase';
+import { sendMessage } from '../../lib/chat';
+import React, { useState, useEffect, useRef } from 'react';
 import { IoSend } from "react-icons/io5";
-import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Menu from '@/components/menu/Menu ';
-import BottomMenu from '@/components/menu/BottomMenu';
-import { IoArrowBackSharp } from "react-icons/io5";
 import Link from 'next/link';
-import { throttle } from 'lodash';
+import { IoArrowBackSharp } from "react-icons/io5";
 
-function getDate() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const date = today.getDate();
-    const showDate = date + '/' + month + "/" + year;
-    return (showDate);
-}
-// Create your Next.js component
 const Chat = () => {
-
-    const [time, setTime] = useState(".");
-    const [date, setDate] = useState(getDate());
-    const [isInputSpinnerOn, setIsInputSpinnerOn] = useState(false)
-    const [isMsgFetchLoadingOn, setIsMsgFetchLoadingOn] = useState(false)
-    const bottomRef = useRef(null);
-    const { status: sessionStatus } = useSession();
-    const [message, setMessage] = useState('');
-    const [allMessage, setAllMessage] = useState([]);
-    const { data: session } = useSession()
+    const { data: session } = useSession();
     const name = session?.user.name;
     const email = session?.user.email;
-    const [s, sets] = useState(1);
-    // let user = userName || userEmail;
-    const containerRef = useRef(null);
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
+    const [loading, setLoading] = useState(true); // Add loading state
 
-    const getScrollPercentage = () => {
-        const container = containerRef.current;
-        if (!container) return 0;
+    // Create a ref for the messages container
+    const messagesEndRef = useRef(null);
 
-        const scrollPosition = container.scrollTop;
-        const scrollHeight = container.scrollHeight;
-        const clientHeight = container.clientHeight;
-
-        if (scrollHeight === 0) {
-            return 0;
-        }
-
-        const scrollPercentage = (scrollPosition / (scrollHeight - clientHeight)) * 100;
-        return scrollPercentage;
+    // Function to scroll to the bottom
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-    function getTime() {
-        const today = new Date();
-        var hours = today.getHours();
-        var minutes = today.getMinutes();
-        var ampm = hours >= 12 ? 'pm' : 'am';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        var strTime = hours + ':' + minutes + ' ' + ampm;
-
-        return (strTime);
-    }
-
-
-
-
     useEffect(() => {
+        const messagesRef = ref(database, 'messages');
+        const unsubscribe = onValue(messagesRef, (snapshot) => {
+            const data = snapshot.val();
+            const messageList = data ? Object.values(data) : [];
+            setMessages(messageList);
+            setLoading(false); // Set loading to false when data is fetched
+        });
 
-        const interval = setInterval(() => {
-            // Call your function here
-            if (getScrollPercentage() != 0) {
-
-                fetchmessages();
-
-            }
-            else {
-
-                if (s) {
-                    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-                }
-
-            }
-            if (getScrollPercentage() < 3) {
-
-                bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-
-            }
-        }, 1000);
-
-        return () => clearInterval(interval);
-
+        // Cleanup on unmount
+        return () => unsubscribe();
     }, []);
 
-    const handleInputFocus = () => {
-        sets(false);
-        if (getScrollPercentage() < 88) {
-            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }
-
-
-    };
-
     useEffect(() => {
-        if (getScrollPercentage() > 88) {
-            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [allMessage]);
+        scrollToBottom(); // Scroll to bottom whenever messages change
+    }, [messages]);
 
-
-
-
-    function fetchmessages() {
-
-        setIsMsgFetchLoadingOn(true);
-
-
-        fetch('/api/communityMsgGet').then(res => {
-            res.json().then(msgs => {
-                setAllMessage(msgs.Fetchedmessage);
-                setIsMsgFetchLoadingOn(false);
-            })
-        })
-
-    }
     const handleSubmit = async (e) => {
-        const trimmedValue = message.trim();
-        if (message === "" || trimmedValue === "") {
-            return null;
-        }
-        setMessage(trimmedValue);
-        setIsInputSpinnerOn(true);
+        //e.preventDefault();
         try {
-            const res = await fetch("api/communityMsgPost", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    message,
-                    date,
-                    time
-                }),
-            });
-
-            if (res.ok) {
-                setMessage(' ');
-                setIsInputSpinnerOn(false);
-            } else {
-                console.log(res);
-            }
+            await sendMessage(name, email, newMessage);
+            setNewMessage(""); // Clear input after sending message
+            scrollToBottom(); // Scroll to bottom after sending a message
         } catch (error) {
-            console.log("Error sending message: ", error);
+            console.error("Error sending message:", error);
         }
     };
 
-
-    if (sessionStatus === "loading") {
-        return (
-            <div className="flex min-h-screen flex-col items-center justify-between p-24">
-                <div class="inputloader "></div>
-            </div>
-        );
-    }
-    else if (sessionStatus === "unauthenticated") {
-        redirect("/");
-    }
-    else {
-        return (
-
-            <div className='flex justify-between h-screen w-full   '>
-
-                <div className='  flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full '>
-                    <div className='hidden  md:grid w-[50%] h-screen     '>
-                        <Menu />
-                    </div>
-                    <div className=' fixed md:hidden mt-16  w-full '>
-
-                        <div className='flex w-full h-full justify-between items-center px-5'>
-                            <Link href='/home'>
-                                <div className=' flex justify-center items-center h-8 w-8
-                                      bg-white rounded-3xl my-2'>
-                                    <IoArrowBackSharp className='h-5 w-5 text-black ' />
-                                </div>
-                            </Link>
-                            {/* <button className=' text-xs rounded-lg px-2 font-light py-2 active:scale-75 duration-300 bg-[#ffffff1c] text-gray-300' onClick={fetchmessages}>view recent messages</button> */}
-                        </div>
-                    </div>
-
-                    <div className='      w-full my-20 md:px-20 flex justify-center items-center  rounded-2xl  '>
-
-                        <div className=" w-full h-full flex flex-col  justify-between   rounded-3xl ">
-                            <div ref={containerRef} className=' px-2 h-full w-full   rounded-3xl overflow-y-scroll  md:bg-[#3e4b55]  '>
-
-                                {/* <div className=' hidden md:flex w-full justify-end items-center'>
-                                        <button className=' fixed text-xs font-normal rounded-2xl active:scale-75 duration-300 px-3 mt-16 py-2 bg-[#ffffff1c] text-white' onClick={fetchmessages}>view resent messages</button>
-                                    </div> */}
-
-                                {isMsgFetchLoadingOn && <div className=' h-full w-full flex justify-center items-center'><div class="inputloader "></div></div>}
-                                <div className=' flex justify-center items-center mt-28'>
-                                    <p className=' text-xs font-light text-[#ffffff4d]'> scroll up to go to bottom</p>
-                                </div>
-                                {allMessage.map((msgs, index) => (
-
-                                    <div key={index} className='max-w-xs bg-bgs rounded-tl-none pb-3 px-3 pt-1 mx-2 my-3  rounded-3xl'>
-                                        <div className='flex w-full justify-between h-full items-center'>
-                                            <h3 className=' my-2 md:text-lg text-base font-bold text-primary'> {msgs.name}</h3>
-                                            <p className=' text-gray-500 text-xs text-end'>{msgs.date}</p>
-                                        </div>
-                                        <p className='   md:text-base text-sm text-textc   '> {msgs.message} </p>
-                                        {/* <p className=' text-gray-500 text-xs text-end'>{msgs.time}</p> */}
-                                    </div>
-
-
-                                ))}
-
-                                <div ref={bottomRef} />
+    return (
+        <div className='flex justify-between h-screen w-full'>
+            <div className='flex MainGrid md:grid grid-cols-2 grid-rows-1 h-screen w-full'>
+                <div className='hidden md:grid w-[50%] h-screen'>
+                    <Menu />
+                </div>
+                <div className='fixed md:hidden mt-16 w-full'>
+                    <div className='flex w-full h-full justify-between items-center px-5'>
+                        <Link href='/home'>
+                            <div className='flex justify-center items-center h-8 w-8 bg-white rounded-3xl my-2'>
+                                <IoArrowBackSharp className='h-5 w-5 text-black' />
                             </div>
-                            <div className=' w-full   fixed md:relative     bottom-1  md:py-0 py-4    justify-center md:pt-4 items-end    '>
-
-
-                                <div className='  md:pl-6 pl-4 pr-2  self-end   w-full md:h-14 h-12 border-[0.5px]    flex justify-center items-center gap-3   rounded-full bottom-1  bg-[#2c3338] border-gray-600' >
-                                    <input onFocus={handleInputFocus} placeholder='messages...' className='   pl-6 bg-transparent outline-none md:text-lg text-sm text-white w-full h-full' type="text" value={message} onChange={e => setMessage(e.target.value)} onKeyPress={(event) => { event.key === "Enter" && handleSubmit(); }} />
-                                    {isInputSpinnerOn && <div className="inputloader"></div>}
-                                    <button className=' bg-primary py-3 px-4 rounded-full active:scale-75 duration-300' onClick={handleSubmit}>
-                                        <IoSend className=' md:h-6 md:w-6 w-3 h-3 text-gray-800' />
-                                    </button>
-                                </div>
-
-
-
-
-
-                            </div>
-
-
-
-
-
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
+                <div className='w-full my-20 md:px-20 flex justify-center items-center rounded-2xl'>
+                    <div className="w-full h-full flex flex-col justify-between rounded-3xl">
+                        <div className='px-2 h-full w-full rounded-3xl overflow-y-scroll md:bg-[#3e4b55]'>
+                            {loading ? (
+                                <div className='h-full w-full flex justify-center items-center'>
+                                    <div className="inputloader"></div>
+                                    <span className='text-gray-500 ml-2'>Loading...</span>
+                                </div>
+                            ) : (
+                                messages.map((message, index) => (
+                                    <div key={index} className='max-w-xs bg-bgs rounded-tl-none pb-3 px-3 pt-1 mx-2 my-3 rounded-3xl'>
+                                        <div className='flex w-full justify-between h-full items-center'>
+                                            <h3 className='my-2 md:text-lg text-base font-bold text-primary'>{message.userName}</h3>
+                                            <p className='text-gray-500 text-xs text-end'>{new Date(message.timestamp).toLocaleTimeString()}</p>
+                                        </div>
+                                        <p className='md:text-base text-sm text-textc'>{message.messageText}</p>
+                                    </div>
+                                ))
+                            )}
+                            <div ref={messagesEndRef} />
+                        </div>
+                        <div className='w-full fixed md:relative bottom-1 md:py-0 py-4 justify-center md:pt-4 items-end'>
+                            <div className='md:pl-6 pl-4 pr-2 self-end w-full md:h-14 h-12 border-[0.5px] flex justify-center items-center gap-3 rounded-full bg-[#2c3338] border-gray-600'>
+                                <input
+                                    placeholder='messages...'
+                                    className='pl-6 bg-transparent outline-none md:text-lg text-sm text-white w-full h-full'
+                                    type="text"
+                                    value={newMessage}
+                                    onChange={(e) => setNewMessage(e.target.value)}
+                                    onKeyPress={(event) => {
+                                        if (event.key === "Enter") {
+                                            event.preventDefault();
+                                            handleSubmit();
+                                        }
+                                    }}
+                                />
+                                <button className='bg-primary py-3 px-4 rounded-full active:scale-75 duration-300' onClick={handleSubmit}>
+                                    <IoSend className='md:h-6 md:w-6 w-3 h-3 text-gray-800' />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-        );
-    }
+        </div>
+    );
 };
 
 export default Chat;
+
+// return (
+//     <div className="max-w-lg mx-auto p-4">
+//       <div className="bg-gray-100 p-4 rounded-lg shadow">
+//         {messages.map((message, index) => (
+//           <div key={index} className="mb-2">
+//             <p className="text-sm text-gray-500">
+//               {message.userName} at {new Date(message.timestamp).toLocaleTimeString()}
+//             </p>
+//             <p className="text-lg">{message.messageText}</p>
+//           </div>
+//         ))}
+//       </div>
+//       <form onSubmit={handleSubmit} className="mt-4">
+//         <input
+//           type="text"
+//           className="w-full p-2 border rounded-lg"
+//           value={newMessage}
+//           onChange={(e) => setNewMessage(e.target.value)}
+//           placeholder="Type a message..."
+//           required
+//         />
+//         <button
+//           type="submit"
+//           className="mt-2 bg-blue-500 text-white p-2 rounded-lg w-full"
+//         >
+//           Send
+//         </button>
+//       </form>
+//     </div>
+//   );

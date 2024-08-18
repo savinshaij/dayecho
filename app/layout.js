@@ -1,12 +1,11 @@
-" use client";
+
 import NavBar from "@/components/NavBar";
 import { AuthProvider } from "./Providers";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import MnavBar from "@/components/MnavBar";
 
-
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
   title: "DayEcho",
@@ -16,16 +15,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-     
+      <body className={roboto.className}>
         <AuthProvider>
-          <MnavBar/>
-          <NavBar/>
-        
+          <MnavBar />
+          <NavBar />
           {children}
-          
-          </AuthProvider>
+        </AuthProvider>
       </body>
     </html>
   );
 }
+
