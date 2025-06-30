@@ -23,7 +23,7 @@ const NavBar = () => {
         return (
 
 
-            <div className='fixed w-full z-50'>
+            <div className='md:fixed hidden bg-bgp w-full z-50'>
 
                 <nav className="relative  w-full">
                     <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">

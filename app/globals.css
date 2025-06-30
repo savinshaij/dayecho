@@ -88,25 +88,41 @@ textarea:focus{
 
 
 
-
+/* Bottom Navigation */
 nav.bnav > * {
-  @apply inline-flex flex-col items-center text-white justify-center px-5  hover:text-primary   ;
+  @apply inline-flex flex-col items-center justify-center px-5 h-14 text-white hover:text-primary transition-all duration-300;
 }
-nav.bnav > *.active{
-  @apply inline-flex flex-col  duration-300 items-center text-primary justify-center px-5  hover:text-primary   ;
+
+nav.bnav > *.active {
+  @apply text-primary;
 }
+
+/* Vertical Tabs Navigation */
+nav.tabs {
+  @apply flex flex-col gap-y-1;
+}
+
 nav.tabs > * {
-  @apply flex items-center px-4 py-2 mt-5 text-textc transition-colors duration-300 transform rounded-md  hover:bg-primary hover:text-gray-900  ;
+  @apply flex items-center h-12 px-4 text-textc transition-colors duration-300 transform rounded-md hover:bg-primary hover:text-gray-900;
 }
-nav.tabs > *.active{
-  @apply flex items-center   px-4 py-2 text-gray-900 transition-colors duration-300 transform bg-primary rounded-md  hover:bg-primary hover:text-gray-900 ;
+
+nav.tabs > *.active {
+  @apply bg-primary text-gray-900;
 }
-div.navs > *.active{
-  @apply   my-2  transition-colors  duration-300 transform font-bold   text-primary  md:mx-4 md:my-0 ;
+
+/* Top Horizontal Navigation */
+div.navs {
+  @apply flex gap-x-3;
 }
+
 div.navs > * {
-  @apply my-2  transition-colors duration-300 transform text-textc  hover:text-primary  md:mx-4 md:my-0  ;
+  @apply px-3 py-2 h-12 text-textc transition-colors duration-300 transform hover:text-primary;
 }
+
+div.navs > *.active {
+  @apply font-bold text-primary;
+}
+
 .wrapper-load {
   width: 200px;
   height: 60px;

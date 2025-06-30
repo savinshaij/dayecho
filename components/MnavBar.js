@@ -19,7 +19,7 @@ const MnavBar = () => {
 
     if(path !== "/" && path !== "/login" && path !== "/register"){
         return (
-            <div className='md:hidden fixed w-full z-50 px-6 py-3 bg-[#36404a] '>
+            <div className='md:hidden fixed w-full z-50 px-6 py-4 bg-[#36404a] '>
                 <nav className="flex justify-between items-center  w-full">
                 <Image
                 

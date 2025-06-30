@@ -1,27 +1,35 @@
 import mongoose, { Schema, models } from "mongoose";
 
 const userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
 
-    {
-      name: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        required: true,
-      },
-      password: {
-        type: String,
-        required: true,
-      },
-      points: { type: Number, default: 0 },
-      var1: {
-        type: Boolean
-       
-      },
-      
-      diaries: [{
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    points: {
+      type: Number,
+      default: 0,
+    },
+
+    var1: {
+      type: Boolean,
+    },
+
+    // 📝 Diaries (array of entries)
+    diaries: [
+      {
         title: {
           type: String,
           required: true,
@@ -37,11 +45,35 @@ const userSchema = new Schema(
         date: {
           type: String,
           required: true,
-        }
-      }],
+        },
+      },
+    ],
+
+    // 🔐 OTP-based password reset
+    resetCode: {
+      type: String,
     },
-    { timestamps: true }
-  );
+    resetCodeExpiry: {
+      type: Date,
+    },
+
+    // 👥 Friend system
+    friends: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+
+    friendRequests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 const User = models.User || mongoose.model("User", userSchema);
 export default User;
