@@ -222,7 +222,7 @@ export default function FriendsPage() {
           {friends.length === 0 ? (
             <div className="bg-bgp rounded-lg p-8 text-center border border-gray-700">
               <FiUsers className="mx-auto text-4xl text-gray-500 mb-3" />
-              <p className="text-gray-400">You haven't added any friends yet</p>
+              <p className="text-gray-400">You haven&apos;t added any friends yet</p>
               <button
                 onClick={() => setTab("search")}
                 className="mt-3 text-primary hover:underline"
