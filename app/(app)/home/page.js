@@ -86,7 +86,7 @@ export default function Page() {
                   Quote of the Day
                 </h2>
                 <p className="text-gray-800 text-lg text-center italic">
-                  "{quote.quote}"
+                  &quot;{quote.quote}&quot;
                 </p>
                 <p className="text-gray-800 text-sm text-end mt-3">
                   — {quote.author}

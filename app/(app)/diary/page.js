@@ -227,7 +227,7 @@ const Diary = () => {
                   No entry found
                 </h3>
                 <p className="text-textc/60">
-                  You didn't write anything on this day
+                  You didn&apos;t write anything on this day
                 </p>
               </div>
             )}
