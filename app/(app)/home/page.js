@@ -95,15 +95,15 @@ export default function Page() {
             )}
 
             {/* Diary and Tasks Quick Links */}
-            <div className="flex  gap-4 mb-8">
+            <div className="flex  md:gap-4 gap-2 md:mb-8 mb-4">
               {/* Diary Box */}
               <Link href="/diary" className="flex-1">
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
-                  className="bg-bgs rounded-xl p-5 border border-gray-500 hover:border-primary transition-all duration-200 h-full flex items-center justify-between"
+                  className="bg-bgs rounded-xl md:p-5 p-3 border border-gray-500 hover:border-primary transition-all duration-200 h-full flex items-center justify-between"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="bg-primary/20 p-3 rounded-full">
+                  <div className="flex items-center md:gap-4 gap-2">
+                    <div className="bg-primary/20 md:p-3 p-2 rounded-full">
                       <FaBook className="text-primary text-xl" />
                     </div>
                     <div>
@@ -121,18 +121,14 @@ export default function Page() {
               <Link href="/tasks" className="flex-1">
                 <motion.div 
                   whileHover={{ scale: 1.02 }}
-                  className="bg-bgs rounded-xl p-5 border border-gray-500 hover:border-primary transition-all duration-200 h-full flex items-center justify-between"
+                  className="bg-bgs rounded-xl md:p-5 p-3 border border-gray-500 hover:border-primary transition-all duration-200 h-full flex items-center justify-between"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center md:gap-4 gap-2">
                     <div className="relative">
-                      <div className="bg-primary/20 p-3 rounded-full">
+                      <div className="bg-primary/20 md:p-3 p-2 rounded-full">
                         <FaTasks className="text-primary text-xl" />
                       </div>
-                      {/* {pendingTasks > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                          {pendingTasks}
-                        </span>
-                      )} */}
+                    
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-textc">Tasks</h3>

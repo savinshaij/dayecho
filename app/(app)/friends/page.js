@@ -35,20 +35,40 @@ export default function FriendsPage() {
   };
 
   const sendRequest = async (toId) => {
-    setIsLoading(true);
-    try {
-      await axios.post("/api/friends/request", { fromId: userId, toId });
-      setMessage({ text: "Friend request sent", type: "success" });
-      loadSentRequests();
-    } catch (err) {
-      setMessage({
-        text: err.response?.data?.error || "Failed to send request",
-        type: "error"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  if (!userId) {
+    setMessage({ text: "You must be signed in", type: "error" });
+    return;
+  }
+
+  if (userId === toId) {
+    setMessage({ text: "You cannot send a request to yourself", type: "error" });
+    return;
+  }
+
+  setIsLoading(true);
+  try {
+    const res = await axios.post("/api/friends/request", {
+      fromId: userId,
+      toId,
+    });
+
+    setMessage({
+      text: res.data.message || "Friend request sent",
+      type: "success",
+    });
+
+    await loadSentRequests();
+  } catch (err) {
+    console.error("❌ Friend request error:", err);
+    setMessage({
+      text: err.response?.data?.error || "Failed to send request",
+      type: "error",
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const cancelRequest = async (toId) => {
     setIsLoading(true);

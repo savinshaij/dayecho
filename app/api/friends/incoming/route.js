@@ -1,5 +1,6 @@
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
+import FriendRequest from "@/models/FriendRequest"
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
@@ -13,7 +14,20 @@ export async function GET(req) {
       return NextResponse.json({ error: "User ID is required" }, { status: 400 });
     }
 
-    const user = await User.findById(id).populate("friendRequests", "name email _id");
+   const requests = await FriendRequest.find({
+  to: id,
+  status: "pending"
+}).populate("from", "name email");
+
+const formatted = requests.map(r => ({
+  _id: r.from._id,
+  name: r.from.name,
+  email: r.from.email,
+  createdAt: r.createdAt
+}));
+
+return NextResponse.json(formatted);
+
 
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
