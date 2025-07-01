@@ -80,12 +80,12 @@ export default function Page() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="bg-primary rounded-xl p-5 mb-8 shadow-lg"
+                className="bg-primary rounded-xl md:p-4 p-3 mb-8 shadow-lg"
               >
                 <h2 className="text-gray-900 font-bold text-xl text-center mb-3">
                   Quote of the Day
                 </h2>
-                <p className="text-gray-800 text-lg text-center italic">
+                <p className="text-gray-800 text-md text-center italic">
                   &quot;{quote.quote}&quot;
                 </p>
                 <p className="text-gray-800 text-sm text-end mt-3">
@@ -107,13 +107,13 @@ export default function Page() {
                       <FaBook className="text-primary text-xl" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-textc">Diary</h3>
+                      <h3 className="md:text-lg text-md font-semibold text-textc">Diary</h3>
                       {/* <p className="text-sm text-textc/70">
                         {diaryEntries > 0 ? `${diaryEntries} entries` : 'No entries yet'}
                       </p> */}
                     </div>
                   </div>
-                  <IoIosArrowForward className="text-primary text-xl" />
+                  <IoIosArrowForward className="text-primary md:text-xl text-md" />
                 </motion.div>
               </Link>
 
@@ -126,31 +126,31 @@ export default function Page() {
                   <div className="flex items-center md:gap-4 gap-2">
                     <div className="relative">
                       <div className="bg-primary/20 md:p-3 p-2 rounded-full">
-                        <FaTasks className="text-primary text-xl" />
+                        <FaTasks className="text-primary md:text-xl text-md" />
                       </div>
                     
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-textc">Tasks</h3>
+                      <h3 className="md:text-lg text-md font-semibold text-textc">Tasks</h3>
                       {/* <p className="text-sm text-textc/70">
                         {pendingTasks > 0 ? `${pendingTasks} pending` : 'All caught up'}
                       </p> */}
                     </div>
                   </div>
-                  <IoIosArrowForward className="text-primary text-xl" />
+                  <IoIosArrowForward className="text-primary md:text-xl text-md" />
                 </motion.div>
               </Link>
             </div>
 
             {/* Posts Section */}
             <div className="mb-12">
-              <h2 className="text-xl text-gray-400 font-medium mb-6 text-center">Community Posts</h2>
+              <h2 className="md:text-xl text-gray-400 font-medium mb-6 text-center">Community Posts</h2>
 
-              {isInputSpinnerOn && (
+              {/* {isInputSpinnerOn && (
                 <div className="flex justify-center my-6">
                   <FaSpinner className="animate-spin text-primary w-8 h-8" />
                 </div>
-              )}
+              )} */}
 
               <div className="mx-auto space-y-6">
                 {isInputSpinnerOn ? (
@@ -210,7 +210,7 @@ export default function Page() {
                         {post.tag && (
                           <div className="flex flex-wrap gap-2">
                             <span className="bg-bgp text-primary px-3 py-1 rounded-full text-xs font-medium">
-                              #{post.tag}
+                              {post.tag}
                             </span>
                           </div>
                         )}

@@ -1,21 +1,9 @@
-import { connectMongoDB } from "@/lib/mongodb";
-import Post from "@/models/post";
 import { NextResponse } from "next/server";
 import { storage, ID } from "@/lib/appwrite";
-import sharp from "sharp";
+import { connectMongoDB } from "@/lib/mongodb";
+import Post from "@/models/post";
 
-// Helper to compress image buffer
-async function compressImage(file) {
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
-  const compressedBuffer = await sharp(buffer)
-    .resize(800) // resize width to 800px, keep aspect ratio
-    .jpeg({ quality: 10 }) // convert to jpeg, compress quality
-    .toBuffer();
-
-  return new File([compressedBuffer], file.name, { type: "image/jpeg" });
-}
+export const dynamic = "force-dynamic";
 
 export async function POST(req) {
   try {
@@ -33,12 +21,10 @@ export async function POST(req) {
     let uploadedId = null;
 
     if (file && file.name && file.size > 0) {
-      const compressedFile = await compressImage(file);
-
       const uploadedFile = await storage.createFile(
         process.env.NEXT_PUBLIC_APPWRITE_BUCKET,
         ID.unique(),
-        compressedFile
+        file 
       );
 
       uploadedId = uploadedFile.$id;
@@ -47,6 +33,7 @@ export async function POST(req) {
     }
 
     await connectMongoDB();
+
     await Post.create({
       name,
       email,
@@ -55,7 +42,7 @@ export async function POST(req) {
       tag,
       date,
       image: imageUrl,
-      fileId: uploadedId, // store image file ID for later deletion
+      fileId: uploadedId,
     });
 
     return NextResponse.json({ message: "Post created successfully." }, { status: 201 });
@@ -67,4 +54,3 @@ export async function POST(req) {
     );
   }
 }
-
